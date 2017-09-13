@@ -9,49 +9,49 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1032513941223182}
+  m_RootGameObject: {fileID: 1767435233610156}
   m_IsPrefabParent: 1
---- !u!1 &1032513941223182
+--- !u!1 &1767435233610156
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4621323234864294}
-  - component: {fileID: 33485312834384834}
-  - component: {fileID: 23304657716022372}
-  - component: {fileID: 114411877427667360}
-  - component: {fileID: 114092764789458066}
-  - component: {fileID: 50950478738547726}
-  - component: {fileID: 114267711733349836}
-  - component: {fileID: 61404010628491960}
+  - component: {fileID: 4633911678281886}
+  - component: {fileID: 33058430149580982}
+  - component: {fileID: 23447156241458346}
+  - component: {fileID: 114662039440094370}
+  - component: {fileID: 114961981816071560}
+  - component: {fileID: 50111011985827448}
+  - component: {fileID: 114029404060115768}
+  - component: {fileID: 61493122465752126}
   m_Layer: 0
-  m_Name: RigidBodyTest
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4621323234864294
+--- !u!4 &4633911678281886
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1767435233610156}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.73787475, y: -1.7196251, z: 8.536697}
+  m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23304657716022372
+--- !u!23 &23447156241458346
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
+  m_GameObject: {fileID: 1767435233610156}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -78,20 +78,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33485312834384834
+--- !u!33 &33058430149580982
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
+  m_GameObject: {fileID: 1767435233610156}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50950478738547726
+--- !u!50 &50111011985827448
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
+  m_GameObject: {fileID: 1767435233610156}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -101,16 +101,16 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &61404010628491960
+  m_Constraints: 4
+--- !u!61 &61493122465752126
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
+  m_GameObject: {fileID: 1767435233610156}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -130,45 +130,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114092764789458066
+--- !u!114 &114029404060115768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
+  m_GameObject: {fileID: 1767435233610156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ba64f41498b8c24ca6fb6b426cef09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 2
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
---- !u!114 &114267711733349836
+  acceleration: 75
+  maxSpeed: 5
+  decceleration: 20
+  direction: {x: 0, y: 0}
+--- !u!114 &114662039440094370
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4915ef7dac0924545b849d0e7bc67992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveForce: 15
---- !u!114 &114411877427667360
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1032513941223182}
+  m_GameObject: {fileID: 1767435233610156}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
@@ -177,21 +159,42 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 30
-    i1: 40
-    i2: 239
-    i3: 46
-    i4: 64
-    i5: 145
-    i6: 215
-    i7: 132
-    i8: 169
-    i9: 181
-    i10: 78
-    i11: 228
-    i12: 252
-    i13: 54
-    i14: 65
-    i15: 255
+    i0: 96
+    i1: 27
+    i2: 156
+    i3: 70
+    i4: 182
+    i5: 192
+    i6: 181
+    i7: 164
+    i8: 184
+    i9: 177
+    i10: 5
+    i11: 9
+    i12: 139
+    i13: 236
+    i14: 109
+    i15: 117
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114961981816071560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
