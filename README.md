@@ -5,7 +5,7 @@
 
 Please only build projects in folder named 'Build' or 'Builds' in base directory, as those folders are ignored in the .gitignore.
 
-[##We Will Be using an emoji format for our commits to make it easier to read and sort through](https://github.com/dannyfritz/commit-message-emoji)
+[We Will Be using an emoji format for our commits to make it easier to read and sort through](https://github.com/dannyfritz/commit-message-emoji)
 
 Prepend every commit message with an emoji with this form:
 `<emoji> commit message`.
@@ -31,19 +31,20 @@ Refactoring | [♻️ Black Universal Recycling Symbol](http://emojipedia.org/bl
 Documentation | [📚 Books](http://emojipedia.org/books/)
 Internationalization | [🌐 Globe With Meridians](http://emojipedia.org/globe-with-meridians/)
 Performance | [🐎 Horse](http://emojipedia.org/horse/)
-Art | [🎨 Artist Palette](http://emojipedia.org/artist-palette/)
+Art/Cosmetic | [🎨 Artist Palette](http://emojipedia.org/artist-palette/)
 Tooling | [🔧 Wrench](http://emojipedia.org/wrench/)
 Tests | [🚨 Police Cars Revolving Light](http://emojipedia.org/police-cars-revolving-light/)
 Deprecation | [💩 Pile of Poo](http://emojipedia.org/pile-of-poo/)
 Removal | [🗑️ Wastebasket](http://emojipedia.org/wastebasket/)
 Work In Progress (WIP) | [🚧 Construction Sign](http://emojipedia.org/construction-sign/)
 Balance Changes | [⚖ Balance Scale](https://emojipedia.org/scales/)
-Player Input/Controls | [🐀񮐀 Joystick](https://emojipedia.org/joystick/)
-Text File Changes | [✏ Pencil](https://emojipedia.org/pencil/) or [🐀񇐀 Memo](https://emojipedia.org/memo/)
+Player Input/Controls | [🕹️ Joystick](https://emojipedia.org/joystick/)
+Text File Changes | [✏ Pencil](https://emojipedia.org/pencil/) or [📝 Memo](https://emojipedia.org/memo/)
 Hotfix | [❗ Exclamation Mark](https://emojipedia.org/heavy-exclamation-mark-symbol/)
-Sounds/Music | [🀀󽐀 Musical Note](https://emojipedia.org/musical-note/)
+Sounds/Music | [🎵 Musical Note](https://emojipedia.org/musical-note/)
 Combat | [⚔️ Crossed Swords](https://emojipedia.org/crossed-swords/) 
-
+Multiplayer | [👥 Busts in Silhouette](https://emojipedia.org/busts-in-silhouette)
+Moving files around | [📂 Open File Folder](https://emojipedia.org/open-file-folder/) or [📁 File Folder](https://emojipedia.org/file-folder/)
 ## Using Emoji is Hard! 😡
 
-Here are [some ways](INTEGRATIONS.md) to more easily integrate emoji into your workflow.
+Here are [some ways](https://github.com/dannyfritz/commit-message-emoji/blob/master/INTEGRATIONS.md) to more easily integrate emoji into your workflow.
