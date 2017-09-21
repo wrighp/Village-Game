@@ -232,9 +232,9 @@ MonoBehaviour:
   m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
-  - {fileID: 0}
   - {fileID: 1268640097316020, guid: 54872dcc20800e541906778104af44c4, type: 2}
   - {fileID: 1767435233610156, guid: 601b9c46b6c0b5a4b8b105098bec6d75, type: 2}
+  - {fileID: 1193455388726470, guid: f448159bf93e4ca4e8bdd1f81ede38d7, type: 2}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadzone: 0
+  targets: []
 --- !u!114 &302775427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1366308864}
   - component: {fileID: 1366308863}
+  - component: {fileID: 1366308865}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -643,6 +645,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1366308865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1366308862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bad6184dcaa934db9e98f40ed9d4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1736497886
 GameObject:
   m_ObjectHideFlags: 0

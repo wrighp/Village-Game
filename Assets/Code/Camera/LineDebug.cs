@@ -45,7 +45,7 @@ public class LineDebug : MonoBehaviour {
 	// LateUpdate is called once per frame
 	void LateUpdate(){
 		for (int i = 0, j = 0, colorsCount = colors.Count; i < colorsCount; i++, j += 2) {
-			Debug.DrawLine(verts[j], verts[j + 1], colors[i], 0,true);
+			Debug.DrawLine(verts[j], verts[j + 1], colors[i], 0, false);
 		}
 	}
 

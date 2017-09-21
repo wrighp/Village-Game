@@ -15,4 +15,12 @@ public class NetworkManagerPlus : NetworkManager {
 		Debug.LogFormat("Assigned {0} prefab(s) to spawn list, previously held {1} prefab(s).",this.spawnPrefabs.Count, previousCount);
 	}
 	#endif
+
+	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
+	{
+		base.OnServerAddPlayer (conn, playerControllerId);
+		//Network.connections.Length;
+		Debug.Log("Player " + conn.connectionId + " connected from " + conn.address);
+	}
+
 }

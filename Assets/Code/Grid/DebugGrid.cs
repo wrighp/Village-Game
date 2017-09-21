@@ -9,7 +9,6 @@ public class DebugGrid : MonoBehaviour {
 	public Vector3 positionOffset;
 	public Material mat;
 	public int xSegments, ySegments;
-	List<Vector2> verts;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,8 +16,6 @@ public class DebugGrid : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update(){
-		//Build List of lines to use on OnPostRender
-		verts = new List<Vector2>(xSegments + ySegments + 4);
 
 		float xPart = width / (xSegments);
 		float yPart = height / (ySegments);

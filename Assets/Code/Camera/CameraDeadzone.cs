@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class CameraDeadzone : MonoBehaviour {
+public class CameraDeadzone : NetworkBehaviour {
 	
 	public float deadzone; //Deadzone in either direction before moving
 	public List<Transform> targets;
+	public float moveSpeed = 2f;
+
 
 	//private float modifiedDeadzone;
 	bool selected;
@@ -38,7 +41,11 @@ public class CameraDeadzone : MonoBehaviour {
 		//
 
 		if(selected){
-			LineDebug.DrawRay(averagePosition, Vector3.up, Color.red);
+			Vector3 zPosition = averagePosition;
+			zPosition.z = transform.position.z + .5f;
+			LineDebug.DrawRay(zPosition + Vector3.down * .5f, Vector3.up, Color.blue);
+			LineDebug.DrawRay(zPosition + Vector3.left * .5f, Vector3.right, Color.blue);
+
 		}
 
 		//Push camera if average position moves outside of deadzone
@@ -48,11 +55,30 @@ public class CameraDeadzone : MonoBehaviour {
 			float direction = Mathf.Sign(x);
 			Vector3 pos = transform.position;
 			pos.x = averagePosition.x - deadzone * direction;
-			transform.position = pos;
+
+			//transform.position = pos;
+			transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * moveSpeed);
 		}
 
 		DrawBoundary();
 	}
+		
+	/// <summary>
+	/// Adds players client side to camera targets.
+	/// Should be called when new player is added, or new player connected
+	/// </summary>
+	public void AddPlayerTargets(){
+		var players = GameObject.FindGameObjectsWithTag("Player");
+		targets.Clear();
+		for (int i = 0, playersLength = players.Length; i < playersLength; i++) {
+			var gameObject = players [i];
+			if(gameObject.GetComponent<NetworkIdentity>().hasAuthority){
+				targets.Add(gameObject.transform);
+			}
+		}
+
+	}
+
 	void DrawBoundary(){
 		if(!selected){
 			return;
