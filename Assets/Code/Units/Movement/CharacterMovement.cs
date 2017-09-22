@@ -10,10 +10,10 @@ using UnityEngine.Networking;
 /// </summary>
 public class CharacterMovement : NetworkBehaviour {
 
-	public float acceleration = 75f;
-	public float maxSpeed = 5f;
-	public float decceleration = 20f;
-	public Vector2 direction; //Non-normalized directions act as acceleration multiplier
+	[SyncVar]public float acceleration = 75f;
+	[SyncVar]public float maxSpeed = 5f;
+	[SyncVar]public float decceleration = 20f;
+	[SyncVar]public Vector2 direction; //Non-normalized directions act as acceleration multiplier
 
 	[SyncVar(hook = "OnDirectionFacesChange")]
 	public bool directionFacesRight = true;
@@ -25,6 +25,10 @@ public class CharacterMovement : NetworkBehaviour {
 	}
 
 	Rigidbody2D rb;
+	protected virtual void Awake(){
+		rb = GetComponent<Rigidbody2D>();
+	}
+
 	// Use this for initialization
 	protected virtual void Start () {
 		
@@ -32,7 +36,7 @@ public class CharacterMovement : NetworkBehaviour {
 
 	public override void OnStartAuthority()
 	{
-		rb = GetComponent<Rigidbody2D>();
+		
 	}
 	// Update is called once per frame
 	protected virtual void Update () {
@@ -41,18 +45,8 @@ public class CharacterMovement : NetworkBehaviour {
 
 	protected virtual void FixedUpdate(){
 		if(hasAuthority){
-			
-			if(direction.magnitude <= float.Epsilon){
-				rb.drag = decceleration;
-			}
-			else{
-				rb.drag = 0f;
-			}
-
-			rb.AddForce(direction * acceleration, ForceMode2D.Force);
-			if(rb.velocity.magnitude > maxSpeed){
-				rb.velocity = rb.velocity.normalized * maxSpeed;
-			}
+			//Send direction to all clients
+			CmdSetDirection(direction);
 
 			//Set facing direction to desired X direction
 			//In the future it may be possible to move backwards without turning however
@@ -62,20 +56,37 @@ public class CharacterMovement : NetworkBehaviour {
 				directionFacesRight = right;
 				CmdSetFacingDirection (right);
 			}
-			direction = Vector2.zero;
 		}
+		if(direction.magnitude <= float.Epsilon){
+			if(rb.velocity.magnitude > 10f / decceleration){ //.05 acting as epsilon to prevent hysteresis
+				rb.AddForce(-rb.velocity.normalized * decceleration, ForceMode2D.Force);
+			}
+		}
+		else{
+			rb.AddForce(direction * acceleration, ForceMode2D.Force);
+		}
+			
+		if(rb.velocity.magnitude > maxSpeed){
+			rb.velocity = rb.velocity.normalized * maxSpeed;
+		}
+		//direction = Vector2.zero;
 	}
 
 	/// <summary>
 	/// Send unreliably as it is set every frame
 	/// </summary>
 	/// <param name="right">If set to <c>true</c> right.</param>
-	[Command (channel = 1)]
+	[Command (channel = 3)]
 	void CmdSetFacingDirection(bool right){
 		directionFacesRight = right;
 	}
 
 	void OnDirectionFacesChange(bool directoinFacesRightNew){
 		directionFacesRight = directoinFacesRightNew;
+	}
+
+	[Command (channel = 3)]
+	protected void CmdSetDirection(Vector3 dir){
+		direction = dir;
 	}
 }

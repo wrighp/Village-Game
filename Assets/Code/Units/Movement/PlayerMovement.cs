@@ -6,18 +6,22 @@ public class PlayerMovement : CharacterMovement {
 
 	// Use this for initialization
 	protected override void Start () {
-		
+		base.Start();
 	}
 	
 	// Update is called once per frame
 	protected override void Update () {
 		base.Update();
-		if(!isLocalPlayer || !hasAuthority){
+		if(!isLocalPlayer /*|| !hasAuthority*/){
 			return;
 		}
 		//Make sure to use Raw Axis or movement becomes very lethargics
 		direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		//Non-normalized directions act as acceleration multiplier
 		direction.Normalize();
+
+	}
+	protected override void FixedUpdate(){
+		base.FixedUpdate();
 	}
 }
