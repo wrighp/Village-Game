@@ -135,6 +135,7 @@ MonoBehaviour:
   maxSpeed: 5
   decceleration: 20
   direction: {x: 0, y: 0}
+  directionFacesRight: 1
 --- !u!114 &114602391185497806
 MonoBehaviour:
   m_ObjectHideFlags: 1

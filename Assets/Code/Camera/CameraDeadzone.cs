@@ -14,7 +14,6 @@ public class CameraDeadzone : NetworkBehaviour {
 	bool selected;
 	void Awake(){
 		targets = new List<Transform>();
-
 	}
 
 	// Use this for initialization
@@ -64,20 +63,17 @@ public class CameraDeadzone : NetworkBehaviour {
 	}
 		
 	/// <summary>
-	/// Adds players client side to camera targets.
+	/// Adds player to camera targets.
 	/// Should be called when new player is added, or new player connected
 	/// </summary>
-	public void AddPlayerTargets(){
-		var players = GameObject.FindGameObjectsWithTag("Player");
-		targets.Clear();
-		for (int i = 0, playersLength = players.Length; i < playersLength; i++) {
-			var gameObject = players [i];
-			if(gameObject.GetComponent<NetworkIdentity>().hasAuthority){
-				targets.Add(gameObject.transform);
-			}
-		}
-
+	public void AddPlayerTarget(Transform player){
+		targets.Add(player);
 	}
+
+	public void RemovePlayerTarget(Transform player){
+		targets.Remove(player);
+	}
+
 
 	void DrawBoundary(){
 		if(!selected){

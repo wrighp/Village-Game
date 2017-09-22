@@ -18,9 +18,15 @@ public class CharacterMovement : NetworkBehaviour {
 	[SyncVar(hook = "OnDirectionFacesChange")]
 	public bool directionFacesRight = true;
 
+	public Vector2 DirectionFacing {
+		get {
+			return Vector2.right * (directionFacesRight ? 1f : -1f);
+		}
+	}
+
 	Rigidbody2D rb;
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 		
 	}
 
@@ -29,11 +35,11 @@ public class CharacterMovement : NetworkBehaviour {
 		rb = GetComponent<Rigidbody2D>();
 	}
 	// Update is called once per frame
-	void Update () {
-		
+	protected virtual void Update () {
+		LineDebug.DrawRay(transform.position + Vector3.back, DirectionFacing * .75f, Color.red);
 	}
 
-	void FixedUpdate(){
+	protected virtual void FixedUpdate(){
 		if(hasAuthority){
 			
 			if(direction.magnitude <= float.Epsilon){

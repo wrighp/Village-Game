@@ -5,9 +5,15 @@ using UnityEngine.Networking;
 
 public class PlayerCamera : NetworkBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	void Awake(){
 		
+	}
+	void Start(){
+
+	}
+	// Use this for initialization
+	void OnEnable () {
+		Camera.main.GetComponent<CameraDeadzone>().AddPlayerTarget(transform);
 	}
 	
 	// Update is called once per frame
@@ -21,6 +27,19 @@ public class PlayerCamera : NetworkBehaviour {
 	public override void OnStartLocalPlayer ()
 	{
 		base.OnStartLocalPlayer ();
-		Camera.main.GetComponent<CameraDeadzone>().AddPlayerTargets();
+		//Camera.main.GetComponent<CameraDeadzone>().AddPlayerTargets();
+	}
+
+	/// <summary>
+	/// Called to bypass the OnDisable event in the case of quitting (prevents errors).
+	/// </summary>
+	void OnApplicationQuit(){
+		Destroy(this);
+	}
+
+	void OnDisable(){
+		if(Camera.main != null){
+			Camera.main.GetComponent<CameraDeadzone>().RemovePlayerTarget(transform);
+		}
 	}
 }
