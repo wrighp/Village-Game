@@ -13,7 +13,7 @@ public class CharacterMovement : NetworkBehaviour {
 	public float acceleration = 75f;
 	public float maxSpeed = 5f;
 	public float decceleration = 20f;
-	public Vector2 direction;
+	public Vector2 direction; //Non-normalized directions act as acceleration multiplier
 
 	[SyncVar(hook = "OnDirectionFacesChange")]
 	public bool directionFacesRight = true;
@@ -56,6 +56,7 @@ public class CharacterMovement : NetworkBehaviour {
 
 			//Set facing direction to desired X direction
 			//In the future it may be possible to move backwards without turning however
+			//Can be based on direction instead of velocity
 			if (System.Math.Abs (rb.velocity.x) > float.Epsilon) {
 				bool right = rb.velocity.x > 0;
 				directionFacesRight = right;

@@ -27,7 +27,7 @@ public class PlayerCamera : NetworkBehaviour {
 	public override void OnStartLocalPlayer ()
 	{
 		base.OnStartLocalPlayer ();
-		//Camera.main.GetComponent<CameraDeadzone>().AddPlayerTargets();
+		//Camera.main.GetComponent<CameraDeadzone>().AddPlayerTarget();
 	}
 
 	/// <summary>

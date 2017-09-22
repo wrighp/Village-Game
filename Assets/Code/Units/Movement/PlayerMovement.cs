@@ -17,6 +17,7 @@ public class PlayerMovement : CharacterMovement {
 		}
 		//Make sure to use Raw Axis or movement becomes very lethargics
 		direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		//Non-normalized directions act as acceleration multiplier
 		direction.Normalize();
 	}
 }
