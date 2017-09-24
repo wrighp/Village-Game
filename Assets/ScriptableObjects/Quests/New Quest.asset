@@ -11,4 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f2a2a82121d8794fb8b3e71a1c865e5, type: 3}
   m_Name: New Quest
   m_EditorClassIdentifier: 
-  body: 
+  QuestName: Merchant Caravan
+  Description: A Merchant Caravan approaches your settlement
+  questDecisions:
+  - decisionDescription: Let the merchants in...
+    branches:
+    - Description: You make trade with the merchants, gaining food for your gold.
+      results:
+      - value: 2
+        quantity: 10
+      - value: 3
+        quantity: -10
+    - Description: You do not have the resources to make a viable trade. The merchant
+        caravan leaves, taking their products with them.
+      results: []
+    branchStyle: 1
+    requirements:
+    - type: 3
+      amount: 10
+  - decisionDescription: Bar the merchants entry...
+    branches:
+    - Description: You bar entry to the merchants, they leave in dismay.
+      results: []
+    - Description: The merchants leaves, village morale decreases over the lost trade
+      results: []
+    branchStyle: 0
+    requirements: []
