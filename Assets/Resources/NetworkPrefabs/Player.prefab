@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4596888790989396}
   - component: {fileID: 212319455461090960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,8 @@ GameObject:
   - component: {fileID: 114029404060115768}
   - component: {fileID: 61493122465752126}
   - component: {fileID: 114602391185497806}
-  m_Layer: 0
+  - component: {fileID: 114407559950768854}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -136,6 +137,18 @@ MonoBehaviour:
   decceleration: 20
   direction: {x: 0, y: 0}
   directionFacesRight: 1
+--- !u!114 &114407559950768854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38a4bfcf76996049b1e1c7d58312394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestUnit: {fileID: 1056363059309706, guid: 532376bfb9295bb4bb277cae09aecb05, type: 2}
 --- !u!114 &114602391185497806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,7 +191,7 @@ MonoBehaviour:
     i14: 109
     i15: 117
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114961981816071560
 MonoBehaviour:
   m_ObjectHideFlags: 1
