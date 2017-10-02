@@ -22,12 +22,12 @@ public class DebugGrid : MonoBehaviour {
 		for(int i = 0; i < xSegments + 1; i++){
 			Vector3 v1 = positionOffset + new Vector3(xPart * (i), 0);
 			Vector2 v2 = positionOffset + new Vector3(xPart * (i + 1), height);
-			LineDebug.DrawLine(v1, v2, color);
+			PlayerDebug.DrawLine(v1, v2, color);
 		}
 		for(int j = 0; j < ySegments + 1; j++){
 			Vector3 v1 = positionOffset + new Vector3(xPart * j / ySegments, yPart * j);
 			Vector3 v2 = positionOffset + new Vector3(width + xPart * j / ySegments, yPart * (j));
-			LineDebug.DrawLine(v1, v2, color);
+			PlayerDebug.DrawLine(v1, v2, color);
 		}
 	}
 }

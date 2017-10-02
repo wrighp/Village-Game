@@ -42,8 +42,8 @@ public class CameraDeadzone : NetworkBehaviour {
 		if(selected){
 			Vector3 zPosition = averagePosition;
 			zPosition.z = transform.position.z + .5f;
-			LineDebug.DrawRay(zPosition + Vector3.down * .5f, Vector3.up, Color.blue);
-			LineDebug.DrawRay(zPosition + Vector3.left * .5f, Vector3.right, Color.blue);
+			PlayerDebug.DrawRay(zPosition + Vector3.down * .5f, Vector3.up, Color.blue);
+			PlayerDebug.DrawRay(zPosition + Vector3.left * .5f, Vector3.right, Color.blue);
 
 		}
 
@@ -80,8 +80,8 @@ public class CameraDeadzone : NetworkBehaviour {
 			return;
 		}
 		Color color = Color.red;
-		LineDebug.DrawRay(transform.position + new Vector3(deadzone, -5f , 1f), Vector3.up * 10f, color);
-		LineDebug.DrawRay(transform.position + new Vector3(-deadzone, -5f , 1f), Vector3.up * 10f, color);
+		PlayerDebug.DrawRay(transform.position + new Vector3(deadzone, -5f , 1f), Vector3.up * 10f, color);
+		PlayerDebug.DrawRay(transform.position + new Vector3(-deadzone, -5f , 1f), Vector3.up * 10f, color);
 		selected = false;
 	}
 	void OnDrawGizmosSelected(){

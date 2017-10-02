@@ -40,7 +40,7 @@ public class CharacterMovement : NetworkBehaviour {
 	}
 	// Update is called once per frame
 	protected virtual void Update () {
-		LineDebug.DrawRay(transform.position + Vector3.back, DirectionFacing * .75f, new Color(1f,0,0,1f));
+		PlayerDebug.DrawRay(transform.position + Vector3.back, DirectionFacing * .75f, new Color(1f,0,0,1f));
 	}
 
 	protected virtual void FixedUpdate(){
