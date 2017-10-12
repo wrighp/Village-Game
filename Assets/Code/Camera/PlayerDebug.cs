@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerDebug : MonoBehaviour {
 
@@ -162,9 +163,6 @@ public class PlayerDebug : MonoBehaviour {
 		}
 		GL.PopMatrix();
 
-		circleCenters.Clear();
-		circleRadii.Clear();
-		circleColors.Clear();
 
 	}
 }
