@@ -17,6 +17,8 @@ MonoBehaviour:
     cleave: 10
     backswingTime: 0.3
     baseDamage: 1
-    swingEffects: []
+    swingEffects:
+    - {fileID: 0}
+    - {fileID: 0}
   swingSounds: []
   hitSounds: []

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2a2a82121d8794fb8b3e71a1c865e5, type: 3}
+  m_Name: MerchantEvent
+  m_EditorClassIdentifier: 
+  QuestName: Merchant Caravan
+  Decision:
+    decisionDescription: Merchant caravan approached
+    options:
+    - choiceDescription: Let enter
+      option: {fileID: 11400000, guid: eacf0b15946bf8d40b81b836d96f36bc, type: 2}
+    - choiceDescription: Bar
+      option: {fileID: 11400000, guid: 7fe0ccc5ffd4f0540b84dbd0585b519c, type: 2}
+    branches:
+    - decisionDescription: The merchants were bandits
+      options:
+      - choiceDescription: Fight
+        option: {fileID: 11400000, guid: 2b0cc72d8f462034ea1a0d584f750e71, type: 2}
+      - choiceDescription: Surrender
+        option: {fileID: 11400000, guid: d94e93766591f454ab44919f94d0caf8, type: 2}
+      branches: []

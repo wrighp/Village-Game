@@ -4,38 +4,26 @@ using UnityEngine.Playables;
 using System;
 using UnityEngine.Networking;
 
-public enum Choices { wood, stone, food, gold };
-public enum BranchStyle { Random, Requirement };
-
 [CreateAssetMenu(fileName = "New Quest", menuName = "ScriptableObject/QuestObject", order = 1)]
-public class QuestObject : ScriptableObject {
-    public string QuestName= "";
-	public string Description = "";
-    public Decision[] questDecisions;
+public class QuestObject : ScriptableObject
+{
+    public string QuestName = "";
+    public Decision Decision;
 }
 
+//Description of event and all the choices, each choice can go to a branch
 [Serializable]
-public class Decision{
+public class Decision
+{
     public string decisionDescription = "";
-    public Branch[] branches;
-    public BranchStyle branchStyle;
-    public Requirement[] requirements;
+    public Choice[] options;
+    public Decision[] branches;
 }
 
-[Serializable]
-public class Requirement{
-    public Choices type;
-    public int amount;
-}
 
 [Serializable]
-public class Branch{
-    public string Description = "";
-    public Result[] results;
-}
-
-[Serializable]
-public class Result{
-    public Choices value;
-    public int quantity;
+public class Choice
+{
+    public string choiceDescription = "";
+    public DecisionOption option;
 }
