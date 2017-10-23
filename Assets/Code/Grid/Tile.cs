@@ -49,9 +49,13 @@ public class Tile : NetworkBehaviour {
 	/// </summary>
 	/// <param name="collider">Collider.</param>
 	void OnTriggerStay2D(Collider2D collider){
-		triggering = true;
 		//Call function on the player unit controller, so that it may interact with this Tile
-		collider.GetComponent<PlayerUnitControl>().OnTileCollision(this);
+		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
+		if(playerUnitController == null){
+			return;
+		}
+		triggering = true;
+		playerUnitController.OnTileCollision(this);
 
 	}
 
