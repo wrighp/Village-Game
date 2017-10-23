@@ -27,7 +27,7 @@ public class WeaponAttack{
 	[Tooltip ("Base damage applied to each character that is hit")]
 	public float baseDamage;
 	[Tooltip ("Functions called on weapon swing, before hit, hit, miss, after hit and completion")]
-	public WeaponSwing[] swingEffects;
+	public SwingEffect[] swingEffects;
 }
 
 [Serializable]

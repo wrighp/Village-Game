@@ -771,6 +771,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 532376bfb9295bb4bb277cae09aecb05, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1117864960 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1966220923601080, guid: ff1332ea4ac8b2f40a06700995662238,
+    type: 2}
+  m_PrefabInternal: {fileID: 332421953}
+--- !u!114 &1117864969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117864960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7479178c878822b4d91ec73c5fb5f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
 --- !u!1 &1366308862
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1061,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4516767906208010, guid: e512d80f0d3484c4094fa5114ddd289a,
     type: 2}
   m_PrefabInternal: {fileID: 1616044101}
+--- !u!1 &1622061679 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1767435233610156, guid: 601b9c46b6c0b5a4b8b105098bec6d75,
+    type: 2}
+  m_PrefabInternal: {fileID: 1020740480}
+--- !u!114 &1622061690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1622061679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7479178c878822b4d91ec73c5fb5f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
 --- !u!4 &1726333179 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4516767906208010, guid: e512d80f0d3484c4094fa5114ddd289a,
@@ -1303,6 +1337,23 @@ Transform:
   m_Father: {fileID: 2146403140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1931079536 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1056363059309706, guid: 532376bfb9295bb4bb277cae09aecb05,
+    type: 2}
+  m_PrefabInternal: {fileID: 1094779972}
+--- !u!114 &1931079545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1931079536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7479178c878822b4d91ec73c5fb5f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
 --- !u!1001 &2031707377
 Prefab:
   m_ObjectHideFlags: 0

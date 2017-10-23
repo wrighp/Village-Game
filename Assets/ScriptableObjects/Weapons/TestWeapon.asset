@@ -13,12 +13,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 0}
   chainAttack:
-  - windupTime: 0.1
+  - windupTime: 0.25
     cleave: 10
-    backswingTime: 0.3
+    backswingTime: 0.25
     baseDamage: 1
     swingEffects:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: b8087fbf00931f24e8587cc5ccf7158d, type: 2}
+  - windupTime: 0.25
+    cleave: 10
+    backswingTime: 0.25
+    baseDamage: 2
+    swingEffects:
+    - {fileID: 11400000, guid: b8087fbf00931f24e8587cc5ccf7158d, type: 2}
+  - windupTime: 0.4
+    cleave: 10
+    backswingTime: 0.6
+    baseDamage: 3
+    swingEffects:
+    - {fileID: 11400000, guid: b8087fbf00931f24e8587cc5ccf7158d, type: 2}
   swingSounds: []
   hitSounds: []

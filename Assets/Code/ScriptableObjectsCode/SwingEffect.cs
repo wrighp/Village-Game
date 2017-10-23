@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class WeaponSwing : NetworkBehaviour {
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+[CreateAssetMenu(fileName = "Swing Effect", menuName = "SwingEffects/WeaponSwing", order = 1)]
+public class SwingEffect : ScriptableObject {
 
+	private bool isServer;
+
+	public bool IsServer {
+		get {
+			return isServer;
+		}
+		set {
+			isServer = value;
+		}
+	}
 
 	/// <summary>
 	/// Called at beginning of attack.
+	/// 
 	/// </summary>
 	/// <param name="attacker">Attacker.</param>
-	protected virtual void OnSwing(Attacking attacker){
+	public virtual void OnSwing(AttackSystem attacker){
 		
 	}
 
@@ -28,7 +30,8 @@ public class WeaponSwing : NetworkBehaviour {
 	/// Called after windup period before any OnHit calls, attack is not guaranteed to hit.
 	/// </summary>
 	/// <param name="attacker">Attacker.</param>
-	protected virtual void OnBeforeHit(Attacking attacker){
+	/// <param name="totalHit">Number of total objects that are going to be hit.</param>
+	public virtual void OnBeforeHit(AttackSystem attacker, int totalHit){
 		
 	}
 
@@ -37,8 +40,9 @@ public class WeaponSwing : NetworkBehaviour {
 	/// </summary>
 	/// <param name="attacker">Attacker.</param>
 	/// <param name="hit">Character that is hit.</param>
-	/// <param name="numHit">Number of other total characters that were or will be hit in this same attack.</param>
-	protected virtual void OnHit(Attacking attacker, GameObject hit, int numHit){
+	/// <param name="numHit">Which number hit was the object (0 to totalHit).</param>
+	/// <param name="totalHit">Number of total objects that are going to be hit.</param>
+	public virtual void OnHit(AttackSystem attacker, GameObject hit, int numHit, int totalHit){
 
 	}
 
@@ -46,7 +50,7 @@ public class WeaponSwing : NetworkBehaviour {
 	/// Called if no character was hit.
 	/// </summary>
 	/// <param name="attacker">Attacker.</param>
-	protected virtual void OnMiss(Attacking attacker){
+	public virtual void OnMiss(AttackSystem attacker){
 
 	}
 
@@ -54,7 +58,7 @@ public class WeaponSwing : NetworkBehaviour {
 	/// Called after all OnHit or OnMiss events, at beginning of backswing.
 	/// </summary>
 	/// <param name="attacker">Attacker.</param>
-	protected virtual void OnAfterHit(Attacking attacker){
+	public virtual void OnAfterHit(AttackSystem attacker){
 
 	}
 
@@ -62,7 +66,7 @@ public class WeaponSwing : NetworkBehaviour {
 	/// Called after end of backswing.
 	/// </summary>
 	/// <param name="attacker">Attacker.</param>
-	protected virtual void OnComplete(Attacking attacker){
+	public virtual void OnComplete(AttackSystem attacker){
 
 	}
 }
