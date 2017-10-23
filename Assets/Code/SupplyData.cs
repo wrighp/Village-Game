@@ -14,6 +14,11 @@ public class SupplyData : NetworkBehaviour {
 	public int food;
 	[SyncVar(hook = "OnGoldChange")]
 	public int gold;
+	[SyncVar(hook = "OnWorkersChange")]
+	public int workers;
+	[SyncVar(hook = "OnFightersChange")]
+	public int fighters;
+
 
 	// Use this for initialization
 	void Start () {
@@ -37,7 +42,12 @@ public class SupplyData : NetworkBehaviour {
 	void OnGoldChange(int goldNew){
 		gold = goldNew;
 	}
-
+	void OnWorkersChange(int workersNew){
+		workers = workersNew;
+	}
+	void OnFightersChange(int fightersNew){
+		fighters = fightersNew;
+	}
 	public override void OnStartServer()
 	{
 		base.OnStartServer();

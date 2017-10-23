@@ -22,5 +22,8 @@ public class UIManager : MonoBehaviour {
         children[1].text = data.wood.ToString();
         children[2].text = data.stone.ToString();
 		children[3].text = data.gold.ToString();
+
+		children[4].text = data.workers.ToString();
+		children[5].text = data.fighters.ToString();
     }
 }
