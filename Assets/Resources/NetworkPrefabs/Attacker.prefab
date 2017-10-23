@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4012377131042430}
   - component: {fileID: 212834222097171378}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,8 @@ GameObject:
   - component: {fileID: 250744981266752510}
   - component: {fileID: 114435005015948642}
   - component: {fileID: 114117886618958880}
-  m_Layer: 0
+  - component: {fileID: 114349145266466116}
+  m_Layer: 10
   m_Name: Attacker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,6 +156,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114349145266466116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966220923601080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7479178c878822b4d91ec73c5fb5f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
 --- !u!114 &114435005015948642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,7 +279,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1280
   m_ForceMagnitude: 10
   m_ForceVariation: 0
   m_DistanceScale: 1

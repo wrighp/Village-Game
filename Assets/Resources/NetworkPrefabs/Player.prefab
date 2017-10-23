@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114875687979497294}
   - component: {fileID: 114128663584952912}
   - component: {fileID: 114984347405272400}
+  - component: {fileID: 114424737876789470}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -96,7 +97,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!61 &61493122465752126
@@ -135,6 +136,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba64f41498b8c24ca6fb6b426cef09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114424737876789470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7479178c878822b4d91ec73c5fb5f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
 --- !u!114 &114602391185497806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,6 +206,7 @@ MonoBehaviour:
   maxSpeed: 5
   decceleration: 20
   direction: {x: 0, y: 0}
+  speedMultiplier: 1
   directionFacesRight: 1
 --- !u!114 &114944723633694138
 MonoBehaviour:
@@ -288,7 +302,7 @@ PointEffector2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1767435233610156}
   m_Enabled: 1
-  m_UseColliderMask: 1
+  m_UseColliderMask: 0
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295

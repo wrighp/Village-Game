@@ -31,6 +31,15 @@ public class Tile : NetworkBehaviour {
 		}
 		PlayerDebug.DrawCircle(transform.position, circleCollider.radius * maxDimension, c);
 
+		foreach(SquadUnit su in units){
+			if(Vector2.Distance(su.unit.transform.position, transform.position) < .1f){
+				su.unit.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+				su.unit.transform.position = transform.position;
+				if(isServer){
+					su.unit.GetComponent<CharacterMovement>().speedMultiplier = 0;
+				}
+			}
+		}
 
 
 	}
@@ -51,9 +60,6 @@ public class Tile : NetworkBehaviour {
 	void OnTriggerStay2D(Collider2D collider){
 		//Call function on the player unit controller, so that it may interact with this Tile
 		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
-		if(playerUnitController == null){
-			return;
-		}
 		triggering = true;
 		playerUnitController.OnTileCollision(this);
 

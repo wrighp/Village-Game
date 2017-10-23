@@ -14,6 +14,7 @@ public class CharacterMovement : NetworkBehaviour {
 	[SyncVar]public float maxSpeed = 5f;
 	[SyncVar]public float decceleration = 20f;
 	[SyncVar]public Vector2 direction; //Non-normalized directions act as acceleration multiplier
+	[SyncVar]public float speedMultiplier = 1f;
 
 	[SyncVar(hook = "OnDirectionFacesChange")]
 	public bool directionFacesRight = true;
@@ -59,14 +60,14 @@ public class CharacterMovement : NetworkBehaviour {
 		}
 		if(direction.magnitude <= float.Epsilon){
 			if(rb.velocity.magnitude > 10f / decceleration){ //.05 acting as epsilon to prevent hysteresis
-				rb.AddForce(-rb.velocity.normalized * decceleration, ForceMode2D.Force);
+				rb.AddForce(-rb.velocity.normalized * decceleration * speedMultiplier, ForceMode2D.Force);
 			}
 		}
 		else{
-			rb.AddForce(direction * acceleration, ForceMode2D.Force);
+			rb.AddForce(direction * acceleration * speedMultiplier, ForceMode2D.Impulse);
 		}
 			
-		if(rb.velocity.magnitude > maxSpeed){
+		if(rb.velocity.magnitude > maxSpeed * speedMultiplier){
 			rb.velocity = rb.velocity.normalized * maxSpeed;
 		}
 		//direction = Vector2.zero;
@@ -88,5 +89,10 @@ public class CharacterMovement : NetworkBehaviour {
 	[Command (channel = 3)]
 	protected void CmdSetDirection(Vector3 dir){
 		direction = dir;
+	}
+
+	[Command (channel = 3)]
+	public void CmdSetSpeedMultiplier(float speed){
+		speedMultiplier = speed;
 	}
 }

@@ -24,7 +24,6 @@ public class PlayerUnitControl : NetworkBehaviour {
 	public float minFollowerDistance = 4f;
 	public SyncListSquadUnit squad = new SyncListSquadUnit();
 
-
 	void Awake(){
 		squad.Callback = OnSquadChanged;
 	}
@@ -77,6 +76,9 @@ public class PlayerUnitControl : NetworkBehaviour {
 	void CmdAddUnitToSquad(SquadUnit s){
 		s.follower.target = transform;
 		s.follower.minDistance = minFollowerDistance;
+		//Reset speed multiplier to normal
+		s.unit.GetComponent<CharacterMovement>().speedMultiplier = 1;
+
 		squad.Add(s);
 	}
 
@@ -100,8 +102,10 @@ public class PlayerUnitControl : NetworkBehaviour {
 	/// When Player interacts with a tile
 	/// </summary>
 	/// <param name="tile">Tile.</param>
-	//[Command]
-	void TileInteract(Tile tile){
+	[Command]
+	void CmdTileInteract(NetworkInstanceId tileID){
+		Tile tile = ClientScene.FindLocalObject(tileID).GetComponent<Tile>();
+
 		if(tile.units.Count > 0){
 			//Add unit to squad, remove from tile
 			CmdAddUnitToSquad(tile.units[0]);
@@ -118,9 +122,7 @@ public class PlayerUnitControl : NetworkBehaviour {
 	}
 
 	void LocalTileInteract(Tile tile){
-		if(isServer){
-			TileInteract(tile);
-		}
+		CmdTileInteract(tile.netId);
 	}
 
 
