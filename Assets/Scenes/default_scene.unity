@@ -883,7 +883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: 0cc9b2a5cd70d5947983a33bffc2d209, type: 2}
-  circleSegments: 20
+  defaultCircleSegments: 16
+  renderOnPause: 1
 --- !u!114 &1549670139
 MonoBehaviour:
   m_ObjectHideFlags: 0

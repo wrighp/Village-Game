@@ -48,7 +48,7 @@ public class PlayerUnitControl : NetworkBehaviour {
 	void CmdTestSpawnSquad(){
 		int count = 3;
 		for(int i = 0; i < count; i++){
-			GameObject go = GameObject.Instantiate (TestUnit, transform.position, Quaternion.identity);
+			GameObject go = GameObject.Instantiate (TestUnit, transform.position + (Vector3)(Random.insideUnitCircle * .1f), Quaternion.identity);
 			NetworkServer.Spawn(go);
 			SquadUnit su = SquadUnit.GameObjectToSquadUnit(go);
 			//Should be assigned at authority, in this case the server

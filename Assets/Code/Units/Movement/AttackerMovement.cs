@@ -1,31 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AttackerMovement : CharacterMovement {
+[RequireComponent (typeof (CharacterMovement))]
+public class AttackerMovement : NetworkBehaviour {
 
 	public Transform target;
+	CharacterMovement movement;
 
-	protected override void Awake(){
-		base.Awake();
+	void Awake(){
+		movement = GetComponent<CharacterMovement>();
 	}
 
 	// Use this for initialization
-	protected override void Start () {
-		base.Start();
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
-	protected override void Update () {
-
-		base.Update();
+	void Update () {
 		if(!hasAuthority){
 			return;
 		}
 
 		if(target != null){
-			direction = target.position - transform.position;
-			direction.Normalize();
+			movement.direction = target.position - transform.position;
+			movement.direction.Normalize();
 		}
 		else{
 			var players = GameObject.FindGameObjectsWithTag("Player");

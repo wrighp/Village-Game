@@ -1,27 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerMovement : CharacterMovement {
+[RequireComponent (typeof (CharacterMovement))]
+public class PlayerMovement : NetworkBehaviour {
+
+	CharacterMovement movement;
+
+	void Awake(){
+		movement = GetComponent<CharacterMovement>();
+	}
 
 	// Use this for initialization
-	protected override void Start () {
-		base.Start();
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
-	protected override void Update () {
-		base.Update();
+	void Update () {
+		
 		if(!isLocalPlayer /*|| !hasAuthority*/){
 			return;
 		}
 		//Make sure to use Raw Axis or movement becomes very lethargics
-		direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+		movement.direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		//Non-normalized directions act as acceleration multiplier
-		direction.Normalize();
+		movement.direction.Normalize();
 
 	}
-	protected override void FixedUpdate(){
-		base.FixedUpdate();
-	}
+
 }

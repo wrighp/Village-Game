@@ -23,7 +23,10 @@ GameObject:
   - component: {fileID: 114514987231875830}
   - component: {fileID: 50915503324735314}
   - component: {fileID: 61769325224845260}
-  - component: {fileID: 114314415912377664}
+  - component: {fileID: 114479280688678704}
+  - component: {fileID: 250432545083461210}
+  - component: {fileID: 114942758988597092}
+  - component: {fileID: 114377808176694798}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Untagged
@@ -103,8 +106,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -119,7 +122,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114314415912377664
+--- !u!114 &114377808176694798
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -130,13 +133,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5503ca5ccf3223c449056c4f05941e89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 10
-  maxSpeed: 4
-  decceleration: 2
-  direction: {x: 0, y: 0}
-  directionFacesRight: 1
   minDistance: 4
   target: {fileID: 0}
+--- !u!114 &114479280688678704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056363059309706}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b104f1b5c118e74ebfd5a6b17b10041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114514987231875830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +199,22 @@ MonoBehaviour:
     i15: 5
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114942758988597092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056363059309706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ba685b1b7bcb544a23a645836fd62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 50
+  maxSpeed: 4.5
+  decceleration: 10
+  direction: {x: 0, y: 0}
+  directionFacesRight: 1
 --- !u!212 &212421154632484562
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -232,3 +257,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!250 &250432545083461210
+PointEffector2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056363059309706}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 10
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 2
+  m_Drag: 0
+  m_AngularDrag: 0

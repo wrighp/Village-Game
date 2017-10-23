@@ -38,10 +38,13 @@ GameObject:
   - component: {fileID: 114662039440094370}
   - component: {fileID: 114961981816071560}
   - component: {fileID: 50111011985827448}
-  - component: {fileID: 114029404060115768}
   - component: {fileID: 61493122465752126}
   - component: {fileID: 114602391185497806}
-  - component: {fileID: 114407559950768854}
+  - component: {fileID: 114944723633694138}
+  - component: {fileID: 250267763525891718}
+  - component: {fileID: 114875687979497294}
+  - component: {fileID: 114128663584952912}
+  - component: {fileID: 114984347405272400}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -105,8 +108,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -121,7 +124,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114029404060115768
+--- !u!114 &114128663584952912
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -132,23 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba64f41498b8c24ca6fb6b426cef09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 75
-  maxSpeed: 5
-  decceleration: 20
-  direction: {x: 0, y: 0}
-  directionFacesRight: 1
---- !u!114 &114407559950768854
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1767435233610156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a38a4bfcf76996049b1e1c7d58312394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TestUnit: {fileID: 1056363059309706, guid: 532376bfb9295bb4bb277cae09aecb05, type: 2}
 --- !u!114 &114602391185497806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,7 +177,34 @@ MonoBehaviour:
     i14: 109
     i15: 117
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &114875687979497294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80ba685b1b7bcb544a23a645836fd62c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: 75
+  maxSpeed: 5
+  decceleration: 20
+  direction: {x: 0, y: 0}
+  directionFacesRight: 1
+--- !u!114 &114944723633694138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b104f1b5c118e74ebfd5a6b17b10041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114961981816071560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,6 +226,19 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114984347405272400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38a4bfcf76996049b1e1c7d58312394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TestUnit: {fileID: 1056363059309706, guid: 532376bfb9295bb4bb277cae09aecb05, type: 2}
+  minFollowerDistance: 4
 --- !u!212 &212319455461090960
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -255,3 +281,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!250 &250267763525891718
+PointEffector2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1767435233610156}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 10
+  m_ForceVariation: 0
+  m_DistanceScale: 1
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 2
+  m_Drag: 0
+  m_AngularDrag: 0
