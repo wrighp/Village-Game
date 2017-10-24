@@ -37,6 +37,7 @@ public class Tile : NetworkBehaviour {
 				su.unit.transform.position = transform.position;
 				if(isServer){
 					su.unit.GetComponent<CharacterMovement>().speedMultiplier = 0;
+					su.unit.GetComponent<Rigidbody2D> ().simulated = false;
 				}
 			}
 		}

@@ -45,7 +45,7 @@ public class CharacterMovement : NetworkBehaviour {
 	}
 
 	protected virtual void FixedUpdate(){
-		if(hasAuthority){
+		if(hasAuthority && rb.simulated){
 			//Send direction to all clients
 			CmdSetDirection(direction);
 

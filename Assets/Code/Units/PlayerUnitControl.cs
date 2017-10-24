@@ -79,6 +79,7 @@ public class PlayerUnitControl : NetworkBehaviour {
 		//Reset speed multiplier to normal
 		s.unit.GetComponent<CharacterMovement>().speedMultiplier = 1;
 
+		s.unit.GetComponent<Rigidbody2D>().simulated = true;
 		squad.Add(s);
 	}
 
