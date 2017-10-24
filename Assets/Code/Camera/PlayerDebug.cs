@@ -23,7 +23,7 @@ public class PlayerDebug : MonoBehaviour {
 	List<float> circleTimes;
 
 	bool paused = false;
-
+	bool disabled = false;
 	void Awake(){
 		#if UNITY_EDITOR
 		EditorApplication.playmodeStateChanged += OnStateChange;
@@ -51,7 +51,9 @@ public class PlayerDebug : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetKeyDown (KeyCode.BackQuote)) {
+			disabled = !disabled;
+		}
 	}
 
 	public static void DrawCircle(Vector3 position, float radius, Color? color = null, float time = 0, int? segments = null){
@@ -61,6 +63,9 @@ public class PlayerDebug : MonoBehaviour {
 		instance.AddCircle(position,radius,color,time,segments);
 	}
 	public void AddCircle(Vector3 position, float radius, Color? color = null, float time = 0, int? segments = null){
+		if (disabled) {
+			return;
+		}
 		color = color ?? Color.white;
 		segments = segments ?? Math.Max(3, defaultCircleSegments);
 		circleCenters.Add(position);
@@ -86,6 +91,9 @@ public class PlayerDebug : MonoBehaviour {
 
 
 	public void AddLine(Vector3 v1, Vector3 v2, Color? color = null, float time = 0){
+		if (disabled) {
+			return;
+		}
 		color = color ?? Color.white;
 		verts.Add(v1);
 		verts.Add(v2);
@@ -155,7 +163,6 @@ public class PlayerDebug : MonoBehaviour {
 		mat.color = Color.white;
 
 		const float totalRadians = Mathf.PI * 2f;
-
 
 		for (int i = 0, circleCentersCount = circleCenters.Count; i < circleCentersCount; i++) {
 			Vector3 center = circleCenters [i];
