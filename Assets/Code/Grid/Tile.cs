@@ -6,6 +6,9 @@ using UnityEngine.Networking;
 public class Tile : NetworkBehaviour {
 
 	CircleCollider2D circleCollider;
+
+	[SyncVar]public int posX;
+	[SyncVar]public int posY;
 	bool triggering;
 
 	public SyncListSquadUnit units = new SyncListSquadUnit();
@@ -54,6 +57,9 @@ public class Tile : NetworkBehaviour {
 	}
 
 
+
+
+
 	/// <summary>
 	/// Raises the trigger event, only Player layers can interact with tile triggers
 	/// </summary>
@@ -75,5 +81,23 @@ public class Tile : NetworkBehaviour {
 		units.Add(unit);
 		unit.follower.target = transform;
 		unit.follower.minDistance = 0;
+	}
+
+	/// <summary>
+	/// Gets the tiles adjacent.
+	/// </summary>
+	/// <returns>The tiles adjacent.</returns>
+	/// <param name="orthogonal">If set to <c>true</c> will exclude diagonal tiles and only include orthogonal ones that are adjacent.</param>
+	public List<Tile> GetTilesAdjacent(bool orthogonal){
+		return TileManager.instance.GetTilesAdjacent(this, orthogonal);
+	}
+
+	/// <summary>
+	/// Gets the adjacent tile of 'tile' in the given direction.
+	/// </summary>
+	/// <returns>The adjacent tile, or null if out of bounds.</returns>
+	/// <param name="direction">Direction.</param>
+	public Tile GetAdjacent(TileDirection direction){
+		return TileManager.instance.GetAdjacent(this,direction);
 	}
 }

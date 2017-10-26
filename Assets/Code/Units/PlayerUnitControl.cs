@@ -33,6 +33,15 @@ public class PlayerUnitControl : NetworkBehaviour {
 		base.OnStartClient ();
 
 	}
+
+	public override void OnStartServer ()
+	{
+		base.OnStartServer ();
+		if(!isServer){
+			return;
+		}
+	}
+
 	public override void OnStartLocalPlayer ()
 	{
 		base.OnStartLocalPlayer ();
