@@ -1042,7 +1042,6 @@ GameObject:
   - component: {fileID: 1366308864}
   - component: {fileID: 1366308863}
   - component: {fileID: 1366308865}
-  - component: {fileID: 1366308866}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -1106,22 +1105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bad6184dcaa934db9e98f40ed9d4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1366308866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1366308862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55caf562831a4f048b73df7dbd9a9834, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 1033772041132198, guid: e512d80f0d3484c4094fa5114ddd289a, type: 2}
-  width: 11
-  height: 6
-  spacing: {x: 4, y: 2.5}
-  offset: 1
 --- !u!4 &1519294677 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4893939676897002, guid: ff1332ea4ac8b2f40a06700995662238,
@@ -1338,6 +1321,7 @@ GameObject:
   - component: {fileID: 1736497887}
   - component: {fileID: 1736497889}
   - component: {fileID: 1736497890}
+  - component: {fileID: 1736497891}
   m_Layer: 0
   m_Name: Core
   m_TagString: Untagged
@@ -1418,6 +1402,23 @@ MonoBehaviour:
   gold: 0
   workers: 0
   fighters: 0
+--- !u!114 &1736497891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1736497886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55caf562831a4f048b73df7dbd9a9834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 1033772041132198, guid: e512d80f0d3484c4094fa5114ddd289a, type: 2}
+  takeFromDebugGrid: 1
+  width: 11
+  height: 6
+  spacing: {x: 4, y: 2.5}
+  offset: 1
 --- !u!1001 &1771975974
 Prefab:
   m_ObjectHideFlags: 0
