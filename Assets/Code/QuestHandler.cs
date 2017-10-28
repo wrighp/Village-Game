@@ -2,28 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class QuestHandler : MonoBehaviour {
+public class QuestHandler : NetworkBehaviour{
     public QuestObject[] quests;
 
     public QuestObject currentQuest;
     private Decision currentDecision;
-
+    [SyncVar]int selection;
     public Text eventTitle;
     public Text eventDescription;
     public Text[] eventChoices;
+    public List<int> votes;
 
     // Use this for initialization
 	void Start () {
-        SelectQuest();
+        if (hasAuthority) {
+            votes = new List<int>();
+            //SelectQuest(); //Will be removed from non test version
+        }
+    }
+
+    void FixedUpdate() {
+        if (hasAuthority && votes.Count >= Network.connections.Length){
+            selection = votes.Pick();
+            votes.Clear();
+            CmdSelectDecision();
+        }
     }
 
     //Select a quest to run
-    void SelectQuest(){
-        currentQuest = quests.Pick();
+    void SelectQuest() {
+        if (hasAuthority) {
+            int selectedQuestID = Random.Range(0, quests.Length);
+            CmdStartQuest(selectedQuestID);
+        }
+    }
+
+    [Command(channel = 0)]
+    void CmdStartQuest(int selection){
+        currentQuest = quests[selection];
         currentDecision = currentQuest.Decision;
         eventTitle.text = currentQuest.QuestName;
-        RunQuest(currentDecision);
+        RunQuest(quests[selection].Decision);
     }
 
     void RunQuest(Decision decision){
@@ -31,7 +52,6 @@ public class QuestHandler : MonoBehaviour {
         for(int i = 0; i < 4; ++i){
             if(decision.options.Length > i &&
               decision.options[i].option.IsVisible()){
-                print("Enabled");
                 eventChoices[i].enabled = true;
                 eventChoices[i].text = decision.options[i].choiceDescription;
                 if (currentDecision.options[i].option.isSelectable()){
@@ -48,8 +68,14 @@ public class QuestHandler : MonoBehaviour {
         }
     }
 
-    public void RunDecision(int selection){
+    [Command(channel = 0)]
+    public void CmdRunDecision(int selection) {
+        if(hasAuthority)
+            votes.Add(selection);
+    }
 
+    [Command(channel = 0)]
+    public void CmdSelectDecision() {
         int result = currentDecision.options[selection].option.onChosen();
 
         if(result != -1) {
