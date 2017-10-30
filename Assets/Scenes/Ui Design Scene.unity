@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 1642698569}
   - component: {fileID: 1642698571}
   m_Layer: 5
-  m_Name: EventSystem
+  m_Name: QuestSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class NetworkManagerPlus : NetworkManager {
 
+    public NetworkConnection netCon = null;
+
 	//Code here for Editor only.
 	#if UNITY_EDITOR
 	public void RegisterPrefabs(List<GameObject> objects)
@@ -18,6 +20,9 @@ public class NetworkManagerPlus : NetworkManager {
 
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
+        if(netCon == null) {
+            netCon = conn;
+        }
 		base.OnServerAddPlayer (conn, playerControllerId);
 		//Network.connections.Length;
 		Debug.Log("Player " + conn.connectionId + " connected from " + conn.address);
