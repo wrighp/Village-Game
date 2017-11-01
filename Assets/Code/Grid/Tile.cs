@@ -11,7 +11,11 @@ public class Tile : NetworkBehaviour {
 	[SyncVar]public int posY;
 	bool triggering;
 
+    public Building building = null;
+
 	public SyncListSquadUnit units = new SyncListSquadUnit();
+
+    RectTransform buildMenu;
 
 	void Awake(){
 		circleCollider = GetComponent<CircleCollider2D>();
@@ -19,7 +23,7 @@ public class Tile : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        buildMenu = GameObject.Find("BuildMenu").GetComponent<RectTransform>();
 	}
 	
 	// Update is called once per frame
@@ -69,12 +73,19 @@ public class Tile : NetworkBehaviour {
 		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
 		triggering = true;
 		playerUnitController.OnTileCollision(this);
-
+        if (building == null && playerUnitController.isLocalPlayer) {
+            buildMenu.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up);
+        } else if(playerUnitController.isLocalPlayer) {
+            buildMenu.position = new Vector3(-100, -100, 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1) && building == null && playerUnitController.isLocalPlayer){
+            PlayerCommands.cmd.PerformBuild(0, this.gameObject);
+        }
 	}
 
 	void OnTriggerExit2D(Collider2D collider){
-		
-	}
+        buildMenu.position = new Vector3(-100, -100, 1);
+    }
 
 	[Command]
 	public void CmdAddUnit(SquadUnit unit){

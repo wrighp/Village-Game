@@ -20,11 +20,10 @@ public class QuestHandler : NetworkBehaviour
     bool hasVoted = false;
 
     // Use this for initialization
-    //void Start()
-    //{
-    //    Debug.Log("Local Player:" + isLocalPlayer);
-    //    Debug.Log("Has Auth:" + hasAuthority);
-    //}
+    void Start()
+    {
+        player = GetComponent<PlayerUtils>();
+    }
 
     void Update()
     {
@@ -66,13 +65,6 @@ public class QuestHandler : NetworkBehaviour
             hasVoted = true;
         }
     }
-
-    //[Command]
-    //public void CmdRunDecision(int select)
-    //{
-    //    print("Run decision");
-    //    votes.Add(select);
-    //}
 
     void RunQuest(Decision decision)
     {
@@ -118,5 +110,14 @@ public class QuestHandler : NetworkBehaviour
                 eventChoices[i].enabled = false;
             }
         }
+    }
+}
+
+public partial class PlayerUtils
+{
+    [Command]
+    public void CmdQuestVote(int selection)
+    {
+        GameObject.FindObjectOfType<QuestHandler>().votes.Add(selection);
     }
 }

@@ -46,7 +46,7 @@ public class PlayerUnitControl : NetworkBehaviour {
 	{
 		base.OnStartLocalPlayer ();
 
-		CmdTestSpawnSquad();
+        CmdTestSpawnSquad();
 	}
 
 	/// <summary>
