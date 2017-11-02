@@ -5,19 +5,29 @@ using System.Reflection;
 using System;
 using UnityEngine.Networking;
 
-public partial class PlayerCommands : MonoBehaviour{
+public partial class Cmds : NetworkBehaviour{
 
-    static public PlayerCommands cmd;
-    static public PlayerUtils playerUtils;
+    static public Cmds i;
+
+	public void Awake(){
+		
+
+	}
+
+	public override void OnStartLocalPlayer ()
+	{
+		base.OnStartClient ();
+		if(isLocalPlayer){
+			i = this;
+		}
+	}
 
     public void Start() {
-        if(cmd == null){
-            cmd = this;
-        }
+        
     }
 
     public void AddVote(int vote) {
-        playerUtils.CmdQuestVote(vote);
+        i.CmdQuestVote(vote);
     }
 
     public void PerformBuild(int selection, GameObject tile) {
@@ -29,7 +39,7 @@ public partial class PlayerCommands : MonoBehaviour{
         {
             case 0:
                 if (Blacksmith.CanBuild()){
-                    playerUtils.CmdBuildBlacksmith(tile);
+                    i.CmdBuildBlacksmith(tile);
                 }
                 break;
             case 1:

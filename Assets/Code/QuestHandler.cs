@@ -7,7 +7,6 @@ using UnityEngine.Networking;
 public class QuestHandler : NetworkBehaviour
 {
     [HideInInspector]
-    public PlayerUtils player;
     public QuestObject[] quests;
     public QuestObject currentQuest;
     private Decision currentDecision;
@@ -22,7 +21,7 @@ public class QuestHandler : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GetComponent<PlayerUtils>();
+		
     }
 
     void Update()
@@ -61,7 +60,7 @@ public class QuestHandler : NetworkBehaviour
         if (!hasVoted)
         {
             print("Appear");
-            player.CmdQuestVote(select);
+			Cmds.i.CmdQuestVote(select);
             hasVoted = true;
         }
     }
@@ -113,7 +112,7 @@ public class QuestHandler : NetworkBehaviour
     }
 }
 
-public partial class PlayerUtils
+public partial class Cmds
 {
     [Command]
     public void CmdQuestVote(int selection)

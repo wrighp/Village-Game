@@ -43,8 +43,10 @@ public class Blacksmith : Building {
     }
 }
 
-public partial class PlayerUtils : NetworkBehaviour {
-    [Command]
+public partial class Cmds : NetworkBehaviour {
+    
+
+	[Command]
     public void CmdBuildBlacksmith(GameObject tile) {
         RpcBuildBlacksmith(tile);
 

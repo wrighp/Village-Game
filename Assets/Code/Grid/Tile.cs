@@ -57,7 +57,7 @@ public class Tile : NetworkBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
-		
+		OnTriggerStay2D (collider);
 	}
 
 
@@ -79,7 +79,7 @@ public class Tile : NetworkBehaviour {
             buildMenu.position = new Vector3(-100, -100, 1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1) && building == null && playerUnitController.isLocalPlayer){
-            PlayerCommands.cmd.PerformBuild(0, this.gameObject);
+			Cmds.i.PerformBuild(0, this.gameObject);
         }
 	}
 
