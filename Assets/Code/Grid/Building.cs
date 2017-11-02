@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public abstract class Building : MonoBehaviour{
+public abstract class Building : NetworkBehaviour {
     protected SupplyData sD;
+    protected bool isObstruction = true;
 
     static public bool CanBuild(){
         return true;
@@ -21,3 +22,5 @@ public abstract class Building : MonoBehaviour{
     abstract public void OnTurnEnd();
 
 }
+
+

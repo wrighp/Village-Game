@@ -7,13 +7,14 @@ using UnityEngine.Networking;
 public class Blacksmith : Building {
 
     void Start() {
+        isObstruction = false;
         sD = GameObject.FindObjectOfType<SupplyData>();
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Buildings/Blacksmith_Building");
     }
 
     new public static bool CanBuild() {
         SupplyData sData = GameObject.FindObjectOfType<SupplyData>();
-        return sData.wood > 5 && sData.stone >5;
+        return sData.wood > 5 && sData.stone > 5;
     }
 
     public override void OnBuild() {
