@@ -29,10 +29,14 @@ public class Blacksmith : Building {
     }
 
     public override void OnTurnEnd(){
+        print("OnTurnEnd");
     }
 
     public override void OnTurnStart(){
-        sD.fighters++;
+        print("OnTurnStart");
+        //Floating Text here for Fighter increase on clients
+        if (isServer)
+            sD.fighters += 1 * gameObject.GetComponent<Tile>().units.Count;
     }
 
     public override void OnInteract(){

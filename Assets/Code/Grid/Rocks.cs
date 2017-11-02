@@ -16,12 +16,14 @@ public class Rocks : Building {
 
     public override void OnRemove() {}
 
-    public override void OnTurnEnd() {}
+    public override void OnTurnEnd() { print("OnTurnEnd"); }
 
     public override void OnTurnStart()
     {
+        print("OnTurnStartRock");
         Tile tile = gameObject.GetComponent<Tile>();
-        if (tile.units.Count > 1){
+        if (tile.units.Count != 0){
+            //Floating Text here for stone increase on clients
             gameObject.GetComponent<SpriteRenderer>().sprite = null;
             if (isServer) {
                 sD.stone += 10;

@@ -68,7 +68,6 @@ public class TileManager : NetworkBehaviour {
 
 	}
 
-
 	public Tile GetTile(int x, int y){
 		uint id = tileIDs[x * height + y];
 		GameObject go = ClientScene.FindLocalObject(new NetworkInstanceId(id));
@@ -170,6 +169,24 @@ public class TileManager : NetworkBehaviour {
 		return null;
 
 	}
+
+    [ClientRpc]
+    public void RpcTurnEnd(){
+        print("Running End");
+        foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
+            b.OnTurnEnd();
+        }
+        //Temp, for testing;
+        RpcTurnStart();
+    }
+
+    [ClientRpc]
+    public void RpcTurnStart() {
+        print("Running Start");
+        foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
+            b.OnTurnStart();
+        }
+    }
 
 	// Update is called once per frame
 	void Update () {

@@ -21,7 +21,7 @@ public partial class PlayerCommands : MonoBehaviour{
     }
 
     public void PerformBuild(int selection, GameObject tile) {
-        Tile t = gameObject.GetComponent<Tile>();
+        Tile t = tile.GetComponent<Tile>();
         if (t.units.Count == 0){
             return;
         }
