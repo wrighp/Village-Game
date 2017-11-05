@@ -43,7 +43,9 @@ public partial class Cmds : NetworkBehaviour{
                 }
                 break;
             case 1:
-
+                if (Farm.CanBuild()) {
+                    i.CmdBuildFarm(tile);
+                }
                 break;
             case 2:
 

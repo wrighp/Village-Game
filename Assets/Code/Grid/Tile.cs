@@ -78,8 +78,10 @@ public class Tile : NetworkBehaviour {
         } else if(playerUnitController.isLocalPlayer) {
             buildMenu.position = new Vector3(-100, -100, 1);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && building == null && playerUnitController.isLocalPlayer){
+        if (Input.GetButtonDown("QuickMenu1") && building == null && playerUnitController.isLocalPlayer){
 			Cmds.i.PerformBuild(0, this.gameObject);
+        } else if(Input.GetButtonDown("QuickMenu2") && building == null && playerUnitController.isLocalPlayer) {
+            Cmds.i.PerformBuild(1, this.gameObject);
         }
 	}
 

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Blacksmith : Building {
+public class Farm : Building {
 
     void Start() {
         isObstruction = false;
         sD = GameObject.FindObjectOfType<SupplyData>();
-        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Buildings/Blacksmith_Building");
+        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Buildings/Farm");
         GameObject parent = ClientScene.FindLocalObject(parentId);
         parent.GetComponent<Tile>().building = this;
         transform.parent = parent.transform;
@@ -17,18 +17,17 @@ public class Blacksmith : Building {
 
     new public static bool CanBuild() {
         SupplyData sData = GameObject.FindObjectOfType<SupplyData>();
-        return sData.wood > 5 && sData.stone > 5;
+        return sData.wood > 5 && sData.gold > 5;
     }
 
     public override void OnBuild() {
         sD = GameObject.FindObjectOfType<SupplyData>();
         sD.wood -= 5;
-        sD.stone -= 5;
+        sD.gold -= 5;
     }
 
     public override void OnRemove(){
-        sD.wood += 2;
-        sD.stone += 2;
+        sD.wood += 3;
     }
 
     public override void OnTurnEnd(){
@@ -39,7 +38,7 @@ public class Blacksmith : Building {
         print("OnTurnStart");
         //Floating Text here for Fighter increase on clients
         if (isServer)
-            sD.fighters += 1 * gameObject.GetComponent<Tile>().units.Count;
+            sD.food += 5 * gameObject.GetComponent<Tile>().units.Count;
     }
 
     public override void OnInteract(){
@@ -48,10 +47,9 @@ public class Blacksmith : Building {
 
 public partial class Cmds : NetworkBehaviour {
 	[Command]
-    public void CmdBuildBlacksmith(GameObject tile) {
-        //RpcBuildBlacksmith(tile);
-        GameObject bsObj = Instantiate(Resources.Load<GameObject>("NetworkPrefabs/Blacksmith"), tile.transform.position, Quaternion.identity);
-        Blacksmith bS = bsObj.GetComponent<Blacksmith>();
+    public void CmdBuildFarm(GameObject tile) {
+        GameObject bsObj = Instantiate(Resources.Load<GameObject>("NetworkPrefabs/Farm"), tile.transform.position, Quaternion.identity);
+        Farm bS = bsObj.GetComponent<Farm>();
         NetworkServer.Spawn(bsObj);
         bS.parentId = tile.GetComponent<NetworkIdentity>().netId;
         bsObj.transform.parent = tile.transform;

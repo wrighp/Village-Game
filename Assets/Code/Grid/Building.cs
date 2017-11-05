@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 public abstract class Building : NetworkBehaviour {
     protected SupplyData sD;
     protected bool isObstruction = true;
-
+    [SyncVar]
+    public NetworkInstanceId parentId;
     static public bool CanBuild(){
         return true;
     }
@@ -23,4 +24,11 @@ public abstract class Building : NetworkBehaviour {
 
 }
 
+public partial class Cmds{
+    [ClientRpc]
+    public void RpcBuild(GameObject tile, GameObject building) {
+        tile.GetComponent<Tile>().building = building.GetComponent<Building>();
+        building.transform.parent = tile.transform;
 
+    }
+}
