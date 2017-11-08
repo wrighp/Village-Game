@@ -39,7 +39,7 @@ public class Blacksmith : Building {
         print("OnTurnStart");
         //Floating Text here for Fighter increase on clients
         if (isServer)
-            sD.fighters += 1 * gameObject.GetComponent<Tile>().units.Count;
+            sD.fighters += 1 * transform.parent.GetComponent<Tile>().units.Count;
     }
 
     public override void OnInteract(){
@@ -55,6 +55,7 @@ public partial class Cmds : NetworkBehaviour {
         NetworkServer.Spawn(bsObj);
         bS.parentId = tile.GetComponent<NetworkIdentity>().netId;
         bsObj.transform.parent = tile.transform;
+        bsObj.transform.Translate(Vector3.back);
         bS.OnBuild();
         Cmds.i.RpcBuild(tile, bsObj);
     }

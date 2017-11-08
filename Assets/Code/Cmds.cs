@@ -20,6 +20,16 @@ public partial class Cmds : NetworkBehaviour{
 		if(isLocalPlayer){
 			i = this;
 		}
+        if (isServer) {
+            foreach(Tile t in GameObject.FindObjectsOfType<Tile>()){
+                int val = UnityEngine.Random.Range(0, 100);
+                if (val > 90){
+                    Cmds.i.CmdBuildRock(t.gameObject);
+                } else if (val > 70){
+                    Cmds.i.CmdBuildTree(t.gameObject);
+                } 
+            }
+        }
 	}
 
     public void Start() {
@@ -48,10 +58,12 @@ public partial class Cmds : NetworkBehaviour{
                 }
                 break;
             case 2:
-
+                if (Home.CanBuild()){
+                    i.CmdBuildHome(tile);
+                }
                 break;
             case 3:
-
+                i.CmdDestroy(tile);
                 break;
         }
     }

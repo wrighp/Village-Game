@@ -31,4 +31,19 @@ public partial class Cmds{
         building.transform.parent = tile.transform;
 
     }
+
+    [Command]
+    public void CmdDestroy(GameObject tile){
+        tile.GetComponent<Tile>().building.OnRemove();
+        i.RpcDestroy(tile);
+    }
+
+    [ClientRpc]
+    public void RpcDestroy(GameObject tile){
+        print(tile.name);
+        Tile t = tile.GetComponent<Tile>();
+        Destroy(t.building.gameObject);
+        t.building = null;
+    }
+
 }

@@ -80,10 +80,14 @@ public class Tile : NetworkBehaviour {
         }
         if (Input.GetButtonDown("QuickMenu1") && building == null && playerUnitController.isLocalPlayer){
 			Cmds.i.PerformBuild(0, this.gameObject);
-        } else if(Input.GetButtonDown("QuickMenu2") && building == null && playerUnitController.isLocalPlayer) {
+        } else if (Input.GetButtonDown("QuickMenu2") && building == null && playerUnitController.isLocalPlayer) {
             Cmds.i.PerformBuild(1, this.gameObject);
+        } else if (Input.GetButtonDown("QuickMenu3") && building == null && playerUnitController.isLocalPlayer) {
+            Cmds.i.PerformBuild(2, this.gameObject);
+        } if (Input.GetButtonDown("QuickMenu4") && building != null && playerUnitController.isLocalPlayer) {
+            Cmds.i.PerformBuild(3, this.gameObject);
         }
-	}
+    }
 
 	void OnTriggerExit2D(Collider2D collider){
         buildMenu.position = new Vector3(-100, -100, 1);

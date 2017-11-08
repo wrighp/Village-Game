@@ -34,7 +34,8 @@ public class TileManager : NetworkBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        if (!isServer) return;
+
 	}
 
 	public override void OnStartServer ()
@@ -53,8 +54,6 @@ public class TileManager : NetworkBehaviour {
 			spacing.y = grid.height / (float)height;
 		}
 
-
-
 		for(int i = 0; i < width; i++){
 			for(int j = 0; j < height; j++){
 				GameObject go = (GameObject)GameObject.Instantiate(tilePrefab, new Vector2(i * spacing.x + offset * j,j * spacing.y),Quaternion.identity,transform);
@@ -63,9 +62,16 @@ public class TileManager : NetworkBehaviour {
 				tile.posX = i;
 				tile.posY = j;
 				tileIDs.Add(go.GetComponent<NetworkIdentity>().netId.Value);
-			}	
+                if (Random.Range(0, 2) > 0)
+                {
+                    GameObject g = GameObject.Instantiate(Resources.Load<GameObject>("NetworkPrefabs/GrassyLand"), go.transform);
+                    NetworkServer.Spawn(g);
+                } else {
+                    GameObject g = GameObject.Instantiate(Resources.Load<GameObject>("NetworkPrefabs/RockyLand"), go.transform);
+                    NetworkServer.Spawn(g);
+                }
+            }	
 		}
-
 	}
 
 	public Tile GetTile(int x, int y){
@@ -181,7 +187,7 @@ public class TileManager : NetworkBehaviour {
     }
 
     [ClientRpc]
-    public void RpcTurnStart() {
+    public void RpcTurnStart(){
         print("Running Start");
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
