@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     public Text[] children;
     private SupplyData data;
-
+    public GameObject floatText;
+    static public UIManager i;
     void Start(){
-        
+        if(i == null)
+        {
+            i = this;
+        }
     }
 
 
@@ -25,5 +29,14 @@ public class UIManager : MonoBehaviour {
 
 		children[4].text = data.workers.ToString();
 		children[5].text = data.fighters.ToString();
+    }
+
+    public void SpawnFloatingText(string text, Vector3 pos) {
+        GameObject ft = Instantiate(floatText, pos, Quaternion.identity);
+        ft.GetComponent<Text>().text = text;
+        ft.transform.SetParent(this.transform);
+        FloatingText ftS = ft.GetComponent<FloatingText>();
+        ftS.start = Camera.main.WorldToScreenPoint(pos);
+        ftS.end = ftS.start + Vector3.up * 50;
     }
 }

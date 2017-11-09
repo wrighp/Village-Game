@@ -38,6 +38,7 @@ public class Blacksmith : Building {
     public override void OnTurnStart(){
         print("OnTurnStart");
         //Floating Text here for Fighter increase on clients
+        UIManager.i.SpawnFloatingText("+" + 1 * transform.parent.GetComponent<Tile>().units.Count + " Fighters", transform.position);
         if (isServer)
             sD.fighters += 1 * transform.parent.GetComponent<Tile>().units.Count;
     }

@@ -31,6 +31,7 @@ public class Rocks : Building {
             if (isServer) {
                 sD.stone += 10;
             }
+            UIManager.i.SpawnFloatingText("+10 Stone", transform.position);
             tile.building = null;
             Destroy(this);
         }

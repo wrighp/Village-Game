@@ -73,10 +73,9 @@ public class Tile : NetworkBehaviour {
 		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
 		triggering = true;
 		playerUnitController.OnTileCollision(this);
-        if (building == null && playerUnitController.isLocalPlayer) {
-            buildMenu.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up);
-        } else if(playerUnitController.isLocalPlayer) {
-            buildMenu.position = new Vector3(-100, -100, 1);
+        if (playerUnitController.isLocalPlayer && units.Count > 0 ) {
+            if ((building != null && !building.isObstruction) || building == null)
+                buildMenu.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up);
         }
         if (Input.GetButtonDown("QuickMenu1") && building == null && playerUnitController.isLocalPlayer){
 			Cmds.i.PerformBuild(0, this.gameObject);
@@ -84,7 +83,7 @@ public class Tile : NetworkBehaviour {
             Cmds.i.PerformBuild(1, this.gameObject);
         } else if (Input.GetButtonDown("QuickMenu3") && building == null && playerUnitController.isLocalPlayer) {
             Cmds.i.PerformBuild(2, this.gameObject);
-        } if (Input.GetButtonDown("QuickMenu4") && building != null && playerUnitController.isLocalPlayer) {
+        } else if (Input.GetButtonDown("QuickMenu4") && building != null && playerUnitController.isLocalPlayer) {
             Cmds.i.PerformBuild(3, this.gameObject);
         }
     }

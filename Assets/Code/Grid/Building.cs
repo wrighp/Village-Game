@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public abstract class Building : NetworkBehaviour {
     protected SupplyData sD;
-    protected bool isObstruction = true;
+    public bool isObstruction = true;
     [SyncVar]
     public NetworkInstanceId parentId;
     static public bool CanBuild(){

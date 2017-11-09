@@ -34,8 +34,9 @@ public class Farm : Building {
         print("OnTurnEnd");
     }
 
-    public override void OnTurnStart(){
+    public override void OnTurnStart() {
         print("OnTurnStart");
+        UIManager.i.SpawnFloatingText("+" + 5 * transform.parent.GetComponent<Tile>().units.Count + " Food", transform.position);
         //Floating Text here for Fighter increase on clients
         if (isServer)
             sD.food += 5 * transform.parent.GetComponent<Tile>().units.Count;

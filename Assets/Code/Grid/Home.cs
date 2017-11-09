@@ -9,7 +9,7 @@ public class Home : Building {
     void Start() {
         isObstruction = false;
         sD = GameObject.FindObjectOfType<SupplyData>();
-        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Buildings/Home");
+        gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Buildings/House");
         GameObject parent = ClientScene.FindLocalObject(parentId);
         parent.GetComponent<Tile>().building = this;
         transform.parent = parent.transform;
@@ -45,7 +45,7 @@ public class Home : Building {
 public partial class Cmds : NetworkBehaviour {
 	[Command]
     public void CmdBuildHome(GameObject tile) {
-        GameObject bsObj = Instantiate(Resources.Load<GameObject>("NetworkPrefabs/House"), tile.transform.position, Quaternion.identity);
+        GameObject bsObj = Instantiate(Resources.Load<GameObject>("NetworkPrefabs/Home"), tile.transform.position, Quaternion.identity);
         Home bS = bsObj.GetComponent<Home>();
         NetworkServer.Spawn(bsObj);
         bS.parentId = tile.GetComponent<NetworkIdentity>().netId;

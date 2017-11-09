@@ -31,6 +31,7 @@ public class Trees : Building {
                 sD.wood += 10;
             }
             tile.building = null;
+            UIManager.i.SpawnFloatingText("+10 Wood", transform.position);
             Destroy(this);
         }
     }
