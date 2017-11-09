@@ -46,7 +46,7 @@ public partial class Cmds : NetworkBehaviour {
         NetworkServer.Spawn(bsObj);
         bS.parentId = tile.GetComponent<NetworkIdentity>().netId;
         bsObj.transform.parent = tile.transform;
-        bsObj.transform.Translate(Vector3.back);
+        //bsObj.transform.Translate(Vector3.back);
         bS.OnBuild();
         Cmds.i.RpcBuild(tile, bsObj);
     }

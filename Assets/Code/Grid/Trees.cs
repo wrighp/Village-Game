@@ -41,12 +41,12 @@ public partial class Cmds : NetworkBehaviour {
     [Command]
     public void CmdBuildTree(GameObject tile) {
         GameObject bsObj = Instantiate(Resources.Load<GameObject>("NetworkPrefabs/Tree"), tile.transform.position, Quaternion.identity);
-        bsObj.transform.Translate(Vector3.back);
+        //bsObj.transform.Translate(Vector3.back);
         Trees bS = bsObj.GetComponent<Trees>();
         NetworkServer.Spawn(bsObj);
         bS.parentId = tile.GetComponent<NetworkIdentity>().netId;
         bsObj.transform.parent = tile.transform;
-        bsObj.transform.Translate(Vector3.back);
+        //bsObj.transform.Translate(Vector3.back);
         bS.OnBuild();
         Cmds.i.RpcBuild(tile, bsObj);
     }

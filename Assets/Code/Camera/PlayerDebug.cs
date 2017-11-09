@@ -23,7 +23,7 @@ public class PlayerDebug : MonoBehaviour {
 	List<float> circleTimes;
 
 	bool paused = false;
-	bool disabled = false;
+	bool disabled = true;
 	void Awake(){
 		#if UNITY_EDITOR
 		EditorApplication.playmodeStateChanged += OnStateChange;

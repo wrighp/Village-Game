@@ -11,9 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20f976787f9b014c81f17afdc173e63, type: 3}
   m_Name: TestPerson
   m_EditorClassIdentifier: 
-  unitAnimator: {fileID: 0}
+  unitAnimator: {fileID: 9100000, guid: 9097e1116206e48488916ccb3d3acbeb, type: 2}
   unitSpriteSet: {fileID: 11400000, guid: d31761afb4ebf3c48b65252c3258ee1e, type: 2}
-  weapon: {fileID: 1392065603851458, guid: 70378bd34d7db5a409ca355b3c4a4ff9, type: 2}
+  weapon:
+  - {fileID: 1416912158002782, guid: a5bb07e543b2fd443b5fea2d8111b413, type: 2}
+  - {fileID: 1578095892866718, guid: 574c6623071d44841b944814ecf049a0, type: 2}
+  - {fileID: 1021286461511610, guid: 1755c5a8b5ed8a047bd0efe4994d3128, type: 2}
+  - {fileID: 1100143934528068, guid: d6ae1a1db4afeb640918dd182cf27276, type: 2}
+  - {fileID: 1506460596458670, guid: 16b613313842b9c408d5e9cb9bd81ac6, type: 2}
+  - {fileID: 1053811996563850, guid: 4e6c5ddb9f020334184231835cbf343e, type: 2}
+  - {fileID: 1995762539188190, guid: 61f87236941ae014b99c11d5a11ff351, type: 2}
+  - {fileID: 1241087165550154, guid: 16f676e68e6bea744a87d53d1461a97f, type: 2}
   health: 100
   scale: 1
   dmgMult: 1

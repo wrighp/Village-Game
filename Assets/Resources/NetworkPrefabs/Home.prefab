@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212420677929139362}
   - component: {fileID: 114490009091908800}
   - component: {fileID: 114675416529338286}
+  - component: {fileID: 114764520181451626}
   m_Layer: 0
   m_Name: Home
   m_TagString: Untagged
@@ -85,6 +86,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dea3e779ae6b47049ab6579a41b26932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isObstruction: 1
+--- !u!114 &114764520181451626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480839445318562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5765a95ff6b44e943a305334e5a0ec16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
 --- !u!212 &212420677929139362
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -94,11 +108,12 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8ff9dc9be84594e44b051df7cae66128, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,6 +124,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

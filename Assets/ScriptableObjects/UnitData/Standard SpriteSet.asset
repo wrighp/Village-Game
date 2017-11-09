@@ -21,6 +21,6 @@ MonoBehaviour:
   rightArm:
   - {fileID: 21300000, guid: 46c8056f53dd7f3448876249faaa4c44, type: 3}
   leftLeg:
-  - {fileID: 21300000, guid: 46be75e0d94b2c74394ad091920b5844, type: 3}
+  - {fileID: 21300000, guid: 3646146b464482c40824f0bfd9fdb815, type: 3}
   rightLeg:
   - {fileID: 21300000, guid: 3646146b464482c40824f0bfd9fdb815, type: 3}
