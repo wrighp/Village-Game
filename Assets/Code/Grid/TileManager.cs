@@ -62,7 +62,7 @@ public class TileManager : NetworkBehaviour {
 				Tile tile = go.GetComponent<Tile>();
 				tile.posX = i;
 				tile.posY = j;
-				tileIDs.Add(new SyncGameObject(go));
+				tileIDs.Add(go);
                 if (Random.Range(0, 2) > 0)
                 {
                     GameObject g = GameObject.Instantiate(Resources.Load<GameObject>("NetworkPrefabs/GrassyLand"), go.transform);
@@ -76,7 +76,7 @@ public class TileManager : NetworkBehaviour {
 	}
 
 	public Tile GetTile(int x, int y){
-		GameObject go = tileIDs[x * height + y].gameObject;
+		GameObject go = tileIDs[x * height + y];
 		return go.GetComponent<Tile>();
 	}
 
