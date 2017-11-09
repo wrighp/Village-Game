@@ -6,14 +6,19 @@ using UnityEngine.Networking;
 
 public struct SquadUnit{
 	public GameObject unit;
-	public FollowerMovement follower;
-	public SquadUnit(GameObject unit, FollowerMovement follower){
+
+	public FollowerMovement Follower {
+		get {
+			return unit.GetComponent<FollowerMovement>();
+		}
+	}
+
+	public SquadUnit(GameObject unit){
 		this.unit = unit;
-		this.follower = follower;
 	}
 
 	public static SquadUnit GameObjectToSquadUnit(GameObject go){
-		return new SquadUnit(go, go.GetComponent<FollowerMovement>());
+		return new SquadUnit(go);
 	}
 }
 public class SyncListSquadUnit : SyncListStruct<SquadUnit>{}
@@ -45,7 +50,6 @@ public class PlayerUnitControl : NetworkBehaviour {
 	public override void OnStartLocalPlayer ()
 	{
 		base.OnStartLocalPlayer ();
-
         CmdTestSpawnSquad();
 	}
 
@@ -76,15 +80,14 @@ public class PlayerUnitControl : NetworkBehaviour {
 	}
 
 
-
 	void CmdAddUnitToSquad(GameObject go){
 		CmdAddUnitToSquad(SquadUnit.GameObjectToSquadUnit(go));
 	}
 
 	[Command]
 	void CmdAddUnitToSquad(SquadUnit s){
-		s.follower.target = transform;
-		s.follower.minDistance = minFollowerDistance;
+		s.Follower.target = transform;
+		s.Follower.minDistance = minFollowerDistance;
 		//Reset speed multiplier to normal
 		s.unit.GetComponent<CharacterMovement>().speedMultiplier = 1;
 

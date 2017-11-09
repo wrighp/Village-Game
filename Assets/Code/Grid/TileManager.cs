@@ -26,7 +26,8 @@ public class TileManager : NetworkBehaviour {
 	public Vector2 spacing;
 	public float offset;
 
-	SyncListUInt tileIDs = new SyncListUInt();
+
+	SyncListGameObject tileIDs = new SyncListGameObject();
 
 	void Awake(){
 		instance = this;
@@ -61,7 +62,7 @@ public class TileManager : NetworkBehaviour {
 				Tile tile = go.GetComponent<Tile>();
 				tile.posX = i;
 				tile.posY = j;
-				tileIDs.Add(go.GetComponent<NetworkIdentity>().netId.Value);
+				tileIDs.Add(new SyncGameObject(go));
                 if (Random.Range(0, 2) > 0)
                 {
                     GameObject g = GameObject.Instantiate(Resources.Load<GameObject>("NetworkPrefabs/GrassyLand"), go.transform);
@@ -75,8 +76,7 @@ public class TileManager : NetworkBehaviour {
 	}
 
 	public Tile GetTile(int x, int y){
-		uint id = tileIDs[x * height + y];
-		GameObject go = ClientScene.FindLocalObject(new NetworkInstanceId(id));
+		GameObject go = tileIDs[x * height + y].gameObject;
 		return go.GetComponent<Tile>();
 	}
 
