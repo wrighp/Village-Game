@@ -19,6 +19,9 @@ public class CharacterMovement : NetworkBehaviour {
 	[SyncVar(hook = "OnDirectionFacesChange")]
 	public bool directionFacesRight = true;
 
+	public  Transform bodyTransform;
+	public Animator animator;
+
 	public Vector2 DirectionFacing {
 		get {
 			return Vector2.right * (directionFacesRight ? 1f : -1f);
@@ -42,6 +45,10 @@ public class CharacterMovement : NetworkBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () {
 		PlayerDebug.DrawRay(transform.position + Vector3.back, DirectionFacing * .75f, new Color(1f,0,0,1f));
+		if(animator != null){
+			animator.SetFloat("MoveSpeed",rb.velocity.magnitude);
+			animator.SetBool("Stopping", direction.magnitude == 0);
+		}
 	}
 
 	protected virtual void FixedUpdate(){
@@ -82,8 +89,12 @@ public class CharacterMovement : NetworkBehaviour {
 		directionFacesRight = right;
 	}
 
-	void OnDirectionFacesChange(bool directoinFacesRightNew){
-		directionFacesRight = directoinFacesRightNew;
+	void OnDirectionFacesChange(bool directionFacesRightNew){
+		directionFacesRight = directionFacesRightNew;
+
+		Vector3 scale = bodyTransform.localScale;
+		float flipDir = directionFacesRight ? 1f : -1f;
+		bodyTransform.localScale = new Vector3(Mathf.Abs(scale.x) * flipDir, scale.y,scale.z);
 	}
 
 	[Command (channel = 3)]
@@ -94,5 +105,12 @@ public class CharacterMovement : NetworkBehaviour {
 	[Command (channel = 3)]
 	public void CmdSetSpeedMultiplier(float speed){
 		speedMultiplier = speed;
+	}
+
+
+	public void SetBody (GameObject go)
+	{
+		bodyTransform = go.transform;
+		animator = bodyTransform.GetComponent<Animator>();
 	}
 }

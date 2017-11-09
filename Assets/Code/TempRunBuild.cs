@@ -7,7 +7,7 @@ public class TempRunBuild : MonoBehaviour {
     public UnitData uD;
 
 	//This is a temoprary class for building sprites, the build should be called from the units main script
-	void Start () {
+	void Awake () {
         BuildUnit.Build(this.gameObject, uD);
 	}
 }
