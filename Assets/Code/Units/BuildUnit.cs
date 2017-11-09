@@ -18,12 +18,12 @@ public static class BuildUnit {
         //Add the animation set for the unit
         if(unitData.unitAnimator != null){
             Animator anim = unit.AddComponent<Animator>();
-            anim = unitData.unitAnimator;
+			anim.runtimeAnimatorController = unitData.unitAnimator;
         }
 
         //Socket the Weapon prefab to the Right Arm
-        if(unitData.weapon != null) {
-            GameObject weapon = GameObject.Instantiate(unitData.weapon);
+		if(unitData.weapon.Length > 0) {
+			GameObject weapon = GameObject.Instantiate(unitData.weapon.Pick());
             weapon.transform.SetParent(unit.transform.Find("RArm"));
             weapon.transform.localPosition = Vector3.zero;
             weapon.transform.localScale = Vector3.one;

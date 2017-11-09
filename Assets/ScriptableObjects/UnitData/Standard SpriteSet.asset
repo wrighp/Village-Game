@@ -9,17 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d5187eccdbdfa442913238f59b67423, type: 3}
-  m_Name: New SpriteSet
+  m_Name: Standard SpriteSet
   m_EditorClassIdentifier: 
   head:
   - {fileID: 21300000, guid: 61c71f08413c4f84ba6f2afc3f068088, type: 3}
   body:
-  - {fileID: 21300000, guid: a536eb686c05c8b4bb97c069dcf3077d, type: 3}
+  - {fileID: 21300000, guid: beb875cb6597f8f48b35ef80c326b7e6, type: 3}
+  - {fileID: 21300000, guid: 72813ac03d9cea241b2ebafa0a88cdc3, type: 3}
   leftArm:
-  - {fileID: 21300000, guid: 73989e4bb53651c40aa026b81298502c, type: 3}
+  - {fileID: 21300000, guid: c2db0b015bee567449f6b39c0a5940c1, type: 3}
   rightArm:
-  - {fileID: 21300000, guid: 747d04884f1261a45abba810af0061f3, type: 3}
+  - {fileID: 21300000, guid: 46c8056f53dd7f3448876249faaa4c44, type: 3}
   leftLeg:
-  - {fileID: 21300000, guid: 67f014da84c0d464db1d0ab956eeea08, type: 3}
+  - {fileID: 21300000, guid: 46be75e0d94b2c74394ad091920b5844, type: 3}
   rightLeg:
-  - {fileID: 21300000, guid: e578081b1708e724e905bb2143c9c5ec, type: 3}
+  - {fileID: 21300000, guid: 3646146b464482c40824f0bfd9fdb815, type: 3}

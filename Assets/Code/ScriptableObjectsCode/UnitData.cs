@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Unit", menuName = "ScriptableObject/UnitData", order = 1)]
 public class UnitData : ScriptableObject {
 
-    public Animator unitAnimator;
+	public RuntimeAnimatorController unitAnimator;
     public SpriteSet unitSpriteSet;
-    public GameObject weapon;
+    public GameObject[] weapon;
 
     //Unit stats
     public int health = 100;
