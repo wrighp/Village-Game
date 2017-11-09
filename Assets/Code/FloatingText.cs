@@ -7,23 +7,26 @@ public class FloatingText : MonoBehaviour {
 
     public Vector3 end;
     public Vector3 start;
-    float time;
+	public Color color;
+	public float time;
+	float timer;
     Text text;
 
 	// Use this for initialization
 	void Start () {
-        time = 0;
         text = GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(time > 1)
+        if(timer >= time)
         {
             Destroy(gameObject);
         }
-        this.transform.position = Vector3.Lerp(start, end, time);
-        time += Time.deltaTime;
-        text.color = new Color(1, 1, 1, 1 - time);
+		float lerp = timer / time;
+		this.transform.position = Vector3.Lerp(start, end, lerp);
+		color.a = 1 - lerp;
+		text.color = color;
+		timer += Time.deltaTime;
 	}
 }
