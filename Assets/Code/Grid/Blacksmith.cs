@@ -62,6 +62,7 @@ public partial class Cmds : NetworkBehaviour {
         foreach (SquadUnit s in t.units) {
             s.unit.GetComponent<FollowerMovement>().rooted = true;
         }
+        Cmds.i.RpcPrintFloatingText(tile, "Used 5 wood and 5 stone");
         Cmds.i.RpcBuild(tile, bsObj);
     }
 }
