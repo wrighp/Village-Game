@@ -115,6 +115,7 @@ public class Tile : NetworkBehaviour {
 
 	[Command]
 	public void CmdAddUnit(SquadUnit unit){
+        print("Called");
 		units.Add(unit);
 		unit.Follower.target = transform;
 		unit.Follower.minDistance = 0;
