@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class Tile : NetworkBehaviour {
 
@@ -16,6 +17,7 @@ public class Tile : NetworkBehaviour {
 	public SyncListSquadUnit units = new SyncListSquadUnit();
 
     RectTransform buildMenu;
+    RectTransform spacePrompt;
 
 	void Awake(){
 		circleCollider = GetComponent<CircleCollider2D>();
@@ -24,6 +26,7 @@ public class Tile : NetworkBehaviour {
 	// Use this for initialization
 	void Start () {
         buildMenu = GameObject.Find("BuildMenu").GetComponent<RectTransform>();
+        spacePrompt = GameObject.Find("ContextPrompt").GetComponent<RectTransform>();
 	}
 	
 	// Update is called once per frame
@@ -68,14 +71,29 @@ public class Tile : NetworkBehaviour {
 	/// Raises the trigger event, only Player layers can interact with tile triggers
 	/// </summary>
 	/// <param name="collider">Collider.</param>
-	void OnTriggerStay2D(Collider2D collider){
+	void OnTriggerStay2D(Collider2D collider) {
 		//Call function on the player unit controller, so that it may interact with this Tile
 		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
 		triggering = true;
 		playerUnitController.OnTileCollision(this);
+        if(units.Count > 0 && units[0].Follower.rooted == true){
+            buildMenu.position = new Vector3(-100, -100, 1);
+            spacePrompt.position = new Vector3(-100, -100, 1);
+            return;
+        }
         if (playerUnitController.isLocalPlayer && units.Count > 0 ) {
-            if ((building != null && !building.isObstruction) || building == null)
-                buildMenu.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up);
+            if ((building != null && !building.isObstruction) || building == null) {
+                buildMenu.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 2.5f);
+                spacePrompt.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 1.5f);
+                spacePrompt.GetComponent<Text>().text = "Press [Space] to recall Villager.";
+            } else {
+                buildMenu.position = new Vector3(-100, -100, 1);
+                spacePrompt.position = new Vector3(-100, -100, 1);
+            }
+        } else if(playerUnitController.isLocalPlayer) {
+            spacePrompt.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 1.5f);
+            spacePrompt.GetComponent<Text>().text = "Press [SPACE] to assign a villager.";
+            buildMenu.position = new Vector3(-100, -100, 1);
         }
         if (Input.GetButtonDown("QuickMenu1") && building == null && playerUnitController.isLocalPlayer){
 			Cmds.i.PerformBuild(0, this.gameObject);
@@ -88,8 +106,11 @@ public class Tile : NetworkBehaviour {
         }
     }
 
-	void OnTriggerExit2D(Collider2D collider){
-        buildMenu.position = new Vector3(-100, -100, 1);
+    void OnTriggerExit2D(Collider2D collider) {
+        if (collider.GetComponent<PlayerUnitControl>().isLocalPlayer) { 
+            buildMenu.position = new Vector3(-100, -100, 1);
+            spacePrompt.position = new Vector3(-100, -100, 1);
+        }
     }
 
 	[Command]

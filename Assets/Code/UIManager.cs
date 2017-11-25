@@ -9,8 +9,7 @@ public class UIManager : MonoBehaviour {
     public GameObject floatText;
     static public UIManager i;
     void Awake(){
-        if(i == null)
-        {
+        if(i == null) {
             i = this;
         }
     }

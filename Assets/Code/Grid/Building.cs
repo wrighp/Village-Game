@@ -34,7 +34,11 @@ public partial class Cmds{
 
     [Command]
     public void CmdDestroy(GameObject tile){
-        tile.GetComponent<Tile>().building.OnRemove();
+        Tile t = tile.GetComponent<Tile>();
+        t.building.OnRemove();
+        foreach (SquadUnit s in t.units){
+            s.unit.GetComponent<FollowerMovement>().rooted = true;
+        }
         i.RpcDestroy(tile);
     }
 

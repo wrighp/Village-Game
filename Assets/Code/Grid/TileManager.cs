@@ -188,6 +188,11 @@ public class TileManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnStart(){
+        if (hasAuthority){
+            foreach (FollowerMovement f in GameObject.FindObjectsOfType<FollowerMovement>()) {
+                f.rooted = false;
+            }
+        }
         print("Running Start");
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
