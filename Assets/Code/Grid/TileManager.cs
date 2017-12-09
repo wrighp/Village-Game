@@ -27,9 +27,9 @@ public class TileManager : NetworkBehaviour {
 	public float offset;
 
 
-	SyncListGameObject tileIDs = new SyncListGameObject();
+	public SyncListGameObject tileIDs = new SyncListGameObject();
 
-	void Awake(){
+	void Awake() {
 		instance = this;
 	}
 
@@ -55,16 +55,19 @@ public class TileManager : NetworkBehaviour {
 			spacing.y = grid.height / (float)height;
 		}
 
-		for(int i = 0; i < width; i++){
-			for(int j = 0; j < height; j++){
+		for(int i = -5; i < width+5; i++){
+			for(int j = -2; j < height+2; j++){
 				GameObject go = (GameObject)GameObject.Instantiate(tilePrefab, new Vector2(i * spacing.x + offset * j,j * spacing.y),Quaternion.identity,transform);
 				NetworkServer.Spawn(go);
-				Tile tile = go.GetComponent<Tile>();
-				tile.posX = i;
-				tile.posY = j;
-				tileIDs.Add(go);
-                if (Random.Range(0, 2) > 0)
-                {
+                Tile tile = go.GetComponent<Tile>();
+                if ((height > j && j >= 0) && (width > i && i >= 0)){
+                    tile.posX = i;
+                    tile.posY = j;
+                    tileIDs.Add(go);
+                } else{
+                    Destroy(tile);
+                }
+                if (Random.Range(0, 2) > 0) {
                     GameObject g = GameObject.Instantiate(Resources.Load<GameObject>("NetworkPrefabs/GrassyLand"), go.transform);
                     NetworkServer.Spawn(g);
                 } else {
@@ -178,7 +181,7 @@ public class TileManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnEnd(){
-        print("Running End");
+        if (QuestHandler.i.busy != 0) return;
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnEnd();
         }
@@ -188,10 +191,19 @@ public class TileManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnStart(){
-        print("Running Start");
+        if (hasAuthority){
+            foreach (FollowerMovement f in GameObject.FindObjectsOfType<FollowerMovement>()) {
+                f.rooted = false;
+            }
+        }
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
         }
+        if (hasAuthority && Random.Range(0,99) >= 80){
+            QuestHandler qH = GameObject.FindObjectOfType<QuestHandler>();
+            qH.SelectQuest();
+        }
+
     }
 
 	// Update is called once per frame

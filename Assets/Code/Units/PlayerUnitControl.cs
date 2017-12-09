@@ -120,9 +120,11 @@ public class PlayerUnitControl : NetworkBehaviour {
 		Tile tile = ClientScene.FindLocalObject(tileID).GetComponent<Tile>();
 
 		if(tile.units.Count > 0){
-			//Add unit to squad, remove from tile
-			CmdAddUnitToSquad(tile.units[0]);
-			tile.units.Remove(tile.units[0]);
+            //Add unit to squad, remove from tile
+            if (tile.units[0].Follower.rooted != true){
+                CmdAddUnitToSquad(tile.units[0]);
+                tile.units.Remove(tile.units[0]);
+            }
 		}
 		else{
 			//Remove unit from squad, add to tile

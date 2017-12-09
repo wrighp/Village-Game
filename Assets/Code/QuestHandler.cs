@@ -6,49 +6,53 @@ using UnityEngine.Networking;
 
 public class QuestHandler : NetworkBehaviour
 {
+    public static QuestHandler i;
     [HideInInspector]
     public QuestObject[] quests;
     public QuestObject currentQuest;
     private Decision currentDecision;
-    [SyncVar]
-    int selection;
+
     public Text eventTitle;
     public Text eventDescription;
     public Text[] eventChoices;
     public SyncListInt votes = new SyncListInt();
+    [SyncVar]
+    public int busy = 0;
     bool hasVoted = false;
+    public bool isVoting = false;
+    public GameObject EventExit;
 
     // Use this for initialization
     void Start()
     {
-		
+        i = this;
     }
 
     void Update()
     {
         if (isServer && votes.Count >= NetworkServer.connections.Count)
         {
-            selection = votes.Pick();
+            int selection = votes.Pick();
             votes.Clear();
-            RpcSelectDecision();
-        }
-        if (isServer && Input.GetKeyDown(KeyCode.S))
-        {
-            SelectQuest(); //Will be removed from non test version
+            RpcSelectDecision(selection);
         }
     }
 
     //Select a quest to run
     [Server]
-    void SelectQuest()
+    public void SelectQuest()
     {
+        busy = NetworkServer.connections.Count;
         int selectedQuestID = Random.Range(0, quests.Length);
+        votes.Clear();
         RpcStartQuest(selectedQuestID);
     }
 
     [ClientRpc]
     void RpcStartQuest(int select)
     {
+        isVoting = true;
+        transform.GetChild(0).gameObject.SetActive(true);
         currentQuest = quests[select];
         currentDecision = currentQuest.Decision;
         eventTitle.text = currentQuest.QuestName;
@@ -92,12 +96,21 @@ public class QuestHandler : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    public void RpcSelectDecision()
+    public void ExitQuest()
     {
+        Cmds.i.CmdExit();
+        transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(0).gameObject.SetActive(false);
+        isVoting = false;
+    }
+
+    [ClientRpc]
+    public void RpcSelectDecision(int selection)
+    {
+        print("Runnning " + selection);
         hasVoted = false;
         int result = currentDecision.options[selection].option.onChosen();
-
+        print("Result " + result); 
         if (result != -1)
         {
             currentDecision = currentDecision.branches[result];
@@ -106,6 +119,7 @@ public class QuestHandler : NetworkBehaviour
         else {
             for (int i = 0; i < 4; ++i)
             {
+                transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
                 eventChoices[i].enabled = false;
             }
         }
@@ -118,5 +132,11 @@ public partial class Cmds
     public void CmdQuestVote(int selection)
     {
         GameObject.FindObjectOfType<QuestHandler>().votes.Add(selection);
+    }
+
+    [Command]
+    public void CmdExit()
+    {
+        GameObject.FindObjectOfType<QuestHandler>().busy--;
     }
 }

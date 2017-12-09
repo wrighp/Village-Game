@@ -21,12 +21,12 @@ public partial class Cmds : NetworkBehaviour{
 			i = this;
 		}
         if (isServer) {
-            foreach(Tile t in GameObject.FindObjectsOfType<Tile>()){
+            foreach(GameObject t in TileManager.instance.tileIDs){
                 int val = UnityEngine.Random.Range(0, 100);
                 if (val > 90){
-                    Cmds.i.CmdBuildRock(t.gameObject);
+                    Cmds.i.CmdBuildRock(t);
                 } else if (val > 70){
-                    Cmds.i.CmdBuildTree(t.gameObject);
+                    Cmds.i.CmdBuildTree(t);
                 } 
             }
         }

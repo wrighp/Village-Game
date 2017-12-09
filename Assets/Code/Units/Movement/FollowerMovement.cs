@@ -12,7 +12,8 @@ public class FollowerMovement : NetworkBehaviour{
 	CharacterMovement movement;
 	public float minDistance = 4f;
 	public Transform target;
-
+    [SyncVar]
+    public bool rooted = false;
 
 	void Awake(){
 		movement = GetComponent<CharacterMovement>();
@@ -25,9 +26,18 @@ public class FollowerMovement : NetworkBehaviour{
 	
 	// Update is called once per frame
 	void Update () {
+        if (rooted){
+            foreach (SpriteRenderer sr in this.GetComponentsInChildren<SpriteRenderer>())
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, .5f);
+            return;
+        } else {
+            foreach(SpriteRenderer sr in this.GetComponentsInChildren<SpriteRenderer>())
+                sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+        }
 		if(!hasAuthority){
 			return;
 		}
+
 		//Make sure to use Raw Axis or movement becomes very lethargic
 		movement.direction = target.position - transform.position;
 		float dist = movement.direction.magnitude;

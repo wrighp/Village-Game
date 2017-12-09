@@ -56,6 +56,11 @@ public partial class Cmds : NetworkBehaviour {
         bsObj.transform.parent = tile.transform;
         bsObj.transform.Translate(Vector3.back);
         bS.OnBuild();
+        Tile t = tile.GetComponent<Tile>();
+        foreach (SquadUnit s in t.units){
+            s.unit.GetComponent<FollowerMovement>().rooted = true;
+        }
+        Cmds.i.RpcPrintFloatingText(tile, "Used 5 wood and 5 Gold");
         Cmds.i.RpcBuild(tile, bsObj);
     }
 }

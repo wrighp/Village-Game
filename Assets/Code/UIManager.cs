@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class UIManager : MonoBehaviour {
     public Text[] children;
@@ -9,8 +10,7 @@ public class UIManager : MonoBehaviour {
     public GameObject floatText;
     static public UIManager i;
     void Awake(){
-        if(i == null)
-        {
+        if(i == null) {
             i = this;
         }
     }
@@ -41,5 +41,13 @@ public class UIManager : MonoBehaviour {
 		color = color ?? Color.white;
 		ftS.color = color.Value;
 		ftS.time = time;
+    }
+}
+
+public partial class Cmds : NetworkBehaviour {
+
+    [ClientRpc]
+    public void RpcPrintFloatingText(GameObject tile, string text) {
+        UIManager.i.SpawnFloatingText(text, tile.transform.position + Vector3.up * 2);
     }
 }
