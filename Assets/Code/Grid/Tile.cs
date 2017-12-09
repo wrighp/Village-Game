@@ -76,7 +76,7 @@ public class Tile : NetworkBehaviour {
 		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
 		triggering = true;
 		playerUnitController.OnTileCollision(this);
-        if(units.Count > 0 && units[0].Follower.rooted == true){
+        if(QuestHandler.i.isVoting || (units.Count > 0 && units[0].Follower.rooted == true)){
             buildMenu.position = new Vector3(-100, -100, 1);
             spacePrompt.position = new Vector3(-100, -100, 1);
             return;

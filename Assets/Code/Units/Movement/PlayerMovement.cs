@@ -19,7 +19,7 @@ public class PlayerMovement : NetworkBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (QuestHandler.i.isVoting) return;
 		if(!isLocalPlayer /*|| !hasAuthority*/){
 			return;
 		}

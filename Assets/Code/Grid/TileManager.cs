@@ -27,9 +27,9 @@ public class TileManager : NetworkBehaviour {
 	public float offset;
 
 
-	SyncListGameObject tileIDs = new SyncListGameObject();
+	public SyncListGameObject tileIDs = new SyncListGameObject();
 
-	void Awake(){
+	void Awake() {
 		instance = this;
 	}
 
@@ -181,7 +181,7 @@ public class TileManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnEnd(){
-        print("Running End");
+        if (QuestHandler.i.busy != 0) return;
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnEnd();
         }
@@ -196,10 +196,14 @@ public class TileManager : NetworkBehaviour {
                 f.rooted = false;
             }
         }
-        print("Running Start");
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
         }
+        if (hasAuthority && Random.Range(0,99) >= 80){
+            QuestHandler qH = GameObject.FindObjectOfType<QuestHandler>();
+            qH.SelectQuest();
+        }
+
     }
 
 	// Update is called once per frame
