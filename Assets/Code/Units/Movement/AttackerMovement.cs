@@ -26,13 +26,18 @@ public class AttackerMovement : NetworkBehaviour {
 		}
 
 		if(target != null){
-			movement.direction = target.position - transform.position;
-			movement.direction.Normalize();
-            if (Vector2.Distance(target.transform.position,transform.position) < 3 && cooldown <= 0) {
+            if (Vector2.Distance(target.transform.position, transform.position) < 3 && cooldown <= 0) {
                 print("attack");
                 cooldown = 5f;
-            } else
-            {
+                movement.direction = Vector2.zero;
+                GetComponentInChildren<Animator>().Play("SwordSwing_Right");
+            } else if(Vector2.Distance(target.transform.position, transform.position) < 3) {
+                movement.direction = Vector2.zero;
+               cooldown -= Time.deltaTime;
+            } else {
+                movement.speedMultiplier = 1;
+                movement.direction = target.position - transform.position;
+                movement.direction.Normalize();
                 cooldown -= Time.deltaTime;
             }
 		}
@@ -46,7 +51,8 @@ public class AttackerMovement : NetworkBehaviour {
                     target = players.Pick().transform;
                 }
             } else {
-                target = UnitManager.i.enemyFighters.Pick().transform;
+                if(UnitManager.i.enemyFighters.Count > 0)
+                    target = UnitManager.i.enemyFighters.Pick().transform;
             }
 
 		}
