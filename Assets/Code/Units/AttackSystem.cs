@@ -13,6 +13,10 @@ public class AttackSystem : NetworkBehaviour {
 
 	GameObject weaponItem;
 
+    public int faction = 0;
+    [SyncVar]
+    public int health = 2;
+
 	int attackStage = -1; //what part of chain attack attack is on
 	float windupTime = 0;
 	float backswingTime = 0;
@@ -41,20 +45,25 @@ public class AttackSystem : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+        if(health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 		//Doing a windup
 		if(IsInWindup()){
             print("Windup");
 			windupTime -= Time.deltaTime;
 			//Is windup finished (attack being done now)
 			if(windupTime <= 0){
-				//Check for hits on things, get list of hit objects
-				//
-				//
-				//
-				//
-				List<GameObject> objectsHit = new List<GameObject>();
+                print("Performing attack");
+                WeaponCollision wc = GetComponentInChildren<WeaponCollision>();
+                List<GameObject> objectsHit = new List<GameObject>();
+                foreach(GameObject go in wc.currentCollisions){
+                    objectsHit.Add(go);
+                }
+                
 				int objectsHitCount = objectsHit.Count;
+                print(objectsHitCount);
 				WeaponAttack chainAttack = weaponObject.chainAttack[attackStage];
 				foreach(SwingEffect swing in chainAttack.swingEffects){
 					swing.OnBeforeHit(this, objectsHitCount);
@@ -68,17 +77,18 @@ public class AttackSystem : NetworkBehaviour {
 						for (int i = 0; i < objectsHitCount && i < chainAttack.cleave; i++) {
 							GameObject obj = objectsHit [i];
 							swing.OnHit(this, obj, i, objectsHitCount);
-							//Play random hit sound
-							//
-							//
-							//
-							//
+                            //Play random hit sound
+                            //
+                            //
+                            //
+                            //
 
-							//Apply base damage
-							//
-							//
-							//
-							//
+                            //Apply base damage
+                            AttackSystem at = obj.GetComponent<AttackSystem>();
+                            if(at != null && at.faction != faction){
+                                print(at.gameObject.name);
+                                at.CmdInflictDamage(2, at.GetComponent<NetworkIdentity>().netId);
+                            }
 						}
 					}
 				}
@@ -115,6 +125,9 @@ public class AttackSystem : NetworkBehaviour {
 	}
 
 	void BeginAttack(){
+        WeaponCollision wc = GetComponentInChildren<WeaponCollision>();
+        wc.currentCollisions.Clear();
+        
 		WeaponAttack chainAttack = weaponObject.chainAttack[bufferedAttack];
 		windupTime = chainAttack.windupTime;
 		backswingTime = chainAttack.backswingTime;
@@ -125,7 +138,11 @@ public class AttackSystem : NetworkBehaviour {
 		}
 
         Animator anim = GetComponentInChildren<Animator>();
-        anim.Play("SwordSwing_Right");
+        if(wc == null || wc.type.Equals("sword")) {
+            anim.Play("SwordSwing_Right");
+        } else {
+            anim.Play("WeaponStab_Right");
+        }
 
         //Play random swing sound
         //
@@ -148,4 +165,9 @@ public class AttackSystem : NetworkBehaviour {
 		}
 	}
 
+    [Command]
+    public void CmdInflictDamage(int dmg, NetworkInstanceId netId) {
+        GameObject target = ClientScene.FindLocalObject(netId);
+        health -= dmg;
+    }
 }

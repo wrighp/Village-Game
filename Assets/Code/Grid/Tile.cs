@@ -74,6 +74,7 @@ public class Tile : NetworkBehaviour {
 	void OnTriggerStay2D(Collider2D collider) {
 		//Call function on the player unit controller, so that it may interact with this Tile
 		var playerUnitController = collider.GetComponent<PlayerUnitControl>();
+        if (playerUnitController == null) return;
 		triggering = true;
 		playerUnitController.OnTileCollision(this);
         if(QuestHandler.i.isVoting || (units.Count > 0 && units[0].Follower.rooted == true)){
@@ -107,6 +108,7 @@ public class Tile : NetworkBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D collider) {
+        if (collider.GetComponent<PlayerUnitControl>() == null) return;
         if (collider.GetComponent<PlayerUnitControl>().isLocalPlayer) { 
             buildMenu.position = new Vector3(-100, -100, 1);
             spacePrompt.position = new Vector3(-100, -100, 1);

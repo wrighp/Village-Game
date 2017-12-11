@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4791493613632124}
   - component: {fileID: 212338208925303414}
   - component: {fileID: 61456806915744072}
+  - component: {fileID: 114316256851546462}
   m_Layer: 0
   m_Name: Longbow
   m_TagString: Untagged
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.4456024, y: 6.9761763}
   m_EdgeRadius: 0
+--- !u!114 &114316256851546462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1021286461511610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52ec33a24f62db45a4056d7ff97115c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: sword
+  currentCollisions: []
 --- !u!212 &212338208925303414
 SpriteRenderer:
   m_ObjectHideFlags: 1

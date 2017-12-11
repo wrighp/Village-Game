@@ -78,8 +78,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
+  faction: 0
+  health: 2
 --- !u!114 &114435005015948642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -156,6 +158,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speedMultiplier: 1
   directionFacesRight: 1
+  bodyTransform: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &114449166516170228
 MonoBehaviour:
   m_ObjectHideFlags: 1

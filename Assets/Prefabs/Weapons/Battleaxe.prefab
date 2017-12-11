@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4402240891578078}
   - component: {fileID: 212679613316278144}
   - component: {fileID: 61402690470070368}
+  - component: {fileID: 114569523824338096}
   m_Layer: 0
   m_Name: Battleaxe
   m_TagString: Untagged
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 7}
   m_EdgeRadius: 0
+--- !u!114 &114569523824338096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1416912158002782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52ec33a24f62db45a4056d7ff97115c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: sword
+  currentCollisions: []
 --- !u!212 &212679613316278144
 SpriteRenderer:
   m_ObjectHideFlags: 1

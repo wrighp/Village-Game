@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4241003754038412}
   - component: {fileID: 212877909812804286}
   - component: {fileID: 61897676792135266}
+  - component: {fileID: 114484674176113930}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9793358, y: 3.1020365}
   m_EdgeRadius: 0
+--- !u!114 &114484674176113930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1578095892866718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52ec33a24f62db45a4056d7ff97115c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: sword
+  currentCollisions: []
 --- !u!212 &212877909812804286
 SpriteRenderer:
   m_ObjectHideFlags: 1

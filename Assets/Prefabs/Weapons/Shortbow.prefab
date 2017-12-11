@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4539176641750686}
   - component: {fileID: 212254197038285712}
   - component: {fileID: 61353697012589820}
+  - component: {fileID: 114978094056944070}
   m_Layer: 0
   m_Name: Shortbow
   m_TagString: Untagged
@@ -66,6 +67,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9364815, y: 5.251026}
   m_EdgeRadius: 0
+--- !u!114 &114978094056944070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1053811996563850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52ec33a24f62db45a4056d7ff97115c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: sword
+  currentCollisions: []
 --- !u!212 &212254197038285712
 SpriteRenderer:
   m_ObjectHideFlags: 1
