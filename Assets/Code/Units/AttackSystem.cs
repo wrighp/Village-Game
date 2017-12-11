@@ -13,7 +13,7 @@ public class AttackSystem : NetworkBehaviour {
 
 	GameObject weaponItem;
 
-    public int faction = 0;
+    public UnitAlliance faction = 0;
     [SyncVar]
     public int health = 2;
 
@@ -47,7 +47,7 @@ public class AttackSystem : NetworkBehaviour {
 	void Update () {
         if(health <= 0)
         {
-            Destroy(this.gameObject);
+            UnitManager.i.DestroyUnit(this.gameObject);
         }
 		//Doing a windup
 		if(IsInWindup()){

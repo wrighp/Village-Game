@@ -31,6 +31,7 @@ public class AttackerMovement : NetworkBehaviour {
                 cooldown = 5f;
                 movement.direction = Vector2.zero;
                 GetComponentInChildren<Animator>().Play("SwordSwing_Right");
+                Cmds.i.CmdDealDamage(target.gameObject);
             } else if(Vector2.Distance(target.transform.position, transform.position) < 3) {
                 movement.direction = Vector2.zero;
                cooldown -= Time.deltaTime;
@@ -43,7 +44,7 @@ public class AttackerMovement : NetworkBehaviour {
 		}
 		else{
             AttackSystem atk = GetComponent<AttackSystem>();
-            if(atk.faction == 1)
+            if(atk.faction == UnitAlliance.EnemyFighter)
             {
                 var players = GameObject.FindGameObjectsWithTag("Player");
                 if (players.Length > 0)
@@ -57,4 +58,12 @@ public class AttackerMovement : NetworkBehaviour {
 
 		}
 	}
+}
+
+public partial class Cmds : NetworkBehaviour
+{
+    [Command]
+    public void CmdDealDamage(GameObject unit) {
+        unit.GetComponent<AttackSystem>().health -= 2;
+    }
 }

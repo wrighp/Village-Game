@@ -30,6 +30,10 @@ public class UnitManager : NetworkBehaviour {
         {
             SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.EnemyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
         }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.FriendlyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
+        }
 	}
 
 	public override void OnStartServer ()
@@ -59,11 +63,15 @@ public class UnitManager : NetworkBehaviour {
 			friendlyFighters.Add(go);
 			friendlyUnits.Add(go);
 			allUnits.Add(go);
-			break;
+            AttackSystem atk = go.GetComponent<AttackSystem>();
+            atk.faction = UnitAlliance.FriendlyFighter;
+            break;
 		case UnitAlliance.EnemyFighter:
 			enemyFighters.Add(go);
 			allUnits.Add(go);
-			break;
+            AttackSystem atkE = go.GetComponent<AttackSystem>();
+            atkE.faction = UnitAlliance.EnemyFighter;
+            break;
 		default:
 			throw new System.ArgumentOutOfRangeException ();
 		}
@@ -75,6 +83,7 @@ public class UnitManager : NetworkBehaviour {
 		friendlyUnits.Remove(unit);
 		enemyFighters.Remove(unit);
 		allUnits.Remove(unit);
+        Destroy(unit);
 	}
 
 }
@@ -84,8 +93,6 @@ public partial class Cmds : NetworkBehaviour {
 	public void CmdSpawnUnit(Vector3 position, GameObject netPrefab, UnitAlliance alliance) {
 		GameObject go = GameObject.Instantiate (netPrefab, position, Quaternion.identity);
 		NetworkServer.Spawn(go);
-
-		UnitManager.i.returnSpawnUnit(go,alliance);
-
-	}
+        UnitManager.i.returnSpawnUnit(go,alliance);
+    }
 }
