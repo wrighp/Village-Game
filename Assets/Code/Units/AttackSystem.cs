@@ -44,6 +44,7 @@ public class AttackSystem : NetworkBehaviour {
 
 		//Doing a windup
 		if(IsInWindup()){
+            print("Windup");
 			windupTime -= Time.deltaTime;
 			//Is windup finished (attack being done now)
 			if(windupTime <= 0){
@@ -85,9 +86,10 @@ public class AttackSystem : NetworkBehaviour {
 		}
 		//Windup was completed
 		else{
-			//Doing backswing
-			if(IsInBackswing()){
-				backswingTime -= Time.deltaTime;
+            //Doing backswing
+            if (IsInBackswing()){
+                print("Backswing");
+                backswingTime -= Time.deltaTime;
 				//backswing just finished
 				if(backswingTime <= 0){
 					WeaponAttack chainAttack = weaponObject.chainAttack[attackStage];
@@ -100,12 +102,13 @@ public class AttackSystem : NetworkBehaviour {
 			//Backswing was completed
 			//E.g. Doing nothing currently
 			else{
-				if(bufferedAttack >= 0){
-					BeginAttack();
+                if (bufferedAttack >= 0 ){
+                    BeginAttack();
 				}
-				else{
-					
-				}
+				else
+                {
+
+                }
 			}
 		}
 
@@ -121,17 +124,15 @@ public class AttackSystem : NetworkBehaviour {
 			swing.OnSwing(this);
 		}
 
-		//Play animation on weaponItem or character
-		//
-		//
-		//
+        Animator anim = GetComponentInChildren<Animator>();
+        anim.Play("SwordSwing_Right");
 
-		//Play random swing sound
-		//
-		//
-		//
+        //Play random swing sound
+        //
+        //
+        //
 
-		attackStage = bufferedAttack;
+        attackStage = 0;
 		//Client and server reset value at same time
 		bufferedAttack = -1;
 
@@ -142,7 +143,8 @@ public class AttackSystem : NetworkBehaviour {
 	[Command]
 	public void CmdAttackMessage(){
 		if(!IsInWindup()){
-			bufferedAttack = attackStage + 1;
+            bufferedAttack = attackStage + 1;
+            print("Buffered stage: " + bufferedAttack);
 		}
 	}
 
