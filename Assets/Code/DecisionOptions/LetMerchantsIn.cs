@@ -13,7 +13,7 @@ public class LetMerchantsIn : DecisionOption {
     
     //returns true if player can select the option (like if they can or can't afford to purchase something)
     public override bool isSelectable() {
-        return false;
+        return true;
     }
 
     ///Returns next decision branch to take (from branches array), -1 if this ends the chain

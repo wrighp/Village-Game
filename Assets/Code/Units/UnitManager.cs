@@ -26,14 +26,14 @@ public class UnitManager : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.EnemyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.FriendlyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.EnemyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
+        //}
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.FriendlyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
+        //}
 	}
 
 	public override void OnStartServer ()

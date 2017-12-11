@@ -49,7 +49,10 @@ public class AttackerMovement : NetworkBehaviour {
                 var players = GameObject.FindGameObjectsWithTag("Player");
                 if (players.Length > 0)
                 {
-                    target = players.Pick().transform;
+                    List<GameObject> targets = new List<GameObject>();
+                    targets.AddRange(targets);
+                    targets.AddRange(UnitManager.i.friendlyFighters);
+                    target = targets.Pick().transform;
                 }
             } else {
                 if(UnitManager.i.enemyFighters.Count > 0)

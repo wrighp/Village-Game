@@ -199,7 +199,10 @@ public class TileManager : NetworkBehaviour {
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
         }
-        if (hasAuthority && Random.Range(0,99) >= 80){
+        int roll = Random.Range(0, 99);
+        if (hasAuthority && Random.Range(0, 99) >= 90) {
+            FightManager.i.StartFight(5);
+        } if (hasAuthority && Random.Range(0,99) >= 70){
             QuestHandler qH = GameObject.FindObjectOfType<QuestHandler>();
             qH.SelectQuest();
         }
