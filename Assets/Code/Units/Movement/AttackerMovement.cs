@@ -8,6 +8,7 @@ public class AttackerMovement : NetworkBehaviour {
 
 	public Transform target;
 	CharacterMovement movement;
+    float cooldown = 5f;
 
 	void Awake(){
 		movement = GetComponent<CharacterMovement>();
@@ -27,12 +28,27 @@ public class AttackerMovement : NetworkBehaviour {
 		if(target != null){
 			movement.direction = target.position - transform.position;
 			movement.direction.Normalize();
+            if (Vector2.Distance(target.transform.position,transform.position) < 3 && cooldown <= 0) {
+                print("attack");
+                cooldown = 5f;
+            } else
+            {
+                cooldown -= Time.deltaTime;
+            }
 		}
 		else{
-			var players = GameObject.FindGameObjectsWithTag("Player");
-			if(players.Length > 0){
-				target = players.Pick().transform;
-			}
+            AttackSystem atk = GetComponent<AttackSystem>();
+            if(atk.faction == 1)
+            {
+                var players = GameObject.FindGameObjectsWithTag("Player");
+                if (players.Length > 0)
+                {
+                    target = players.Pick().transform;
+                }
+            } else {
+                target = UnitManager.i.enemyFighters.Pick().transform;
+            }
+
 		}
 	}
 }

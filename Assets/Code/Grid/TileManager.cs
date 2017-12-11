@@ -55,7 +55,7 @@ public class TileManager : NetworkBehaviour {
 			spacing.y = grid.height / (float)height;
 		}
 
-		for(int i = -5; i < width+5; i++){
+		for(int i = -5; i < width+20; i++){
 			for(int j = -2; j < height+2; j++){
 				GameObject go = (GameObject)GameObject.Instantiate(tilePrefab, new Vector2(i * spacing.x + offset * j,j * spacing.y),Quaternion.identity,transform);
 				NetworkServer.Spawn(go);
