@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: BarMerchant
   m_EditorClassIdentifier: 
   EndingDescriptions:
-  - The merchants leave and no trade was had
-  - Barring the merchants from viable trade harmed morale
+  - Seeing the Village has not purchased any wares, the Merchant Caravan leaves.
+  - Being unable to purchase wares has lowered Village morale.
+  - The Merchant Caravan leaves...

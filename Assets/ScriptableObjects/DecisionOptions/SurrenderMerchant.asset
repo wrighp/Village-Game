@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: SurrenderMerchant
   m_EditorClassIdentifier: 
   EndingDescriptions:
-  - Dummy text to test system
+  - You surrender to the Bandits, they pillage resources from the Village.

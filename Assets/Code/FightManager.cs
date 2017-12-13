@@ -26,6 +26,7 @@ public class FightManager : NetworkBehaviour {
         SupplyData s = GameObject.FindObjectOfType<SupplyData>();
         for (int i = 0; i < s.fighters; ++i) {
             UnitManager.i.SpawnUnit(new Vector3(52, 6, 0), UnitAlliance.FriendlyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
+            s.fighters--; //The numer displayed is the reserve of soldiers, hence the removal
         }
         for (int i = 0; i < enemies; ++i) {
             UnitManager.i.SpawnUnit(new Vector3(65, 4, 0), UnitAlliance.EnemyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));

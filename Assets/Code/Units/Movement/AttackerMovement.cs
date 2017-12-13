@@ -26,26 +26,20 @@ public class AttackerMovement : NetworkBehaviour {
 		}
 
 		if(target != null){
-            if (Vector2.Distance(target.transform.position, transform.position) < 3 && cooldown <= 0) {
+            if (Vector2.Distance(target.transform.position, transform.position) < 3) {
                 print("attack");
                 cooldown = 5f;
                 movement.direction = Vector2.zero;
-                GetComponentInChildren<Animator>().Play("SwordSwing_Right");
-                Cmds.i.CmdDealDamage(target.gameObject);
-            } else if(Vector2.Distance(target.transform.position, transform.position) < 3) {
+                Cmds.i.CmdPerformAttack(gameObject);
                 movement.direction = Vector2.zero;
-               cooldown -= Time.deltaTime;
             } else {
-                movement.speedMultiplier = 1;
                 movement.direction = target.position - transform.position;
                 movement.direction.Normalize();
-                cooldown -= Time.deltaTime;
             }
 		}
 		else{
             AttackSystem atk = GetComponent<AttackSystem>();
-            if(atk.faction == UnitAlliance.EnemyFighter)
-            {
+            if(atk.faction == UnitAlliance.EnemyFighter) {
                 var players = GameObject.FindGameObjectsWithTag("Player");
                 if (players.Length > 0)
                 {
@@ -63,10 +57,11 @@ public class AttackerMovement : NetworkBehaviour {
 	}
 }
 
+//Because Unet does not allow non player objects to perform attacks, this allows AI to call action commands
 public partial class Cmds : NetworkBehaviour
 {
     [Command]
-    public void CmdDealDamage(GameObject unit) {
-        unit.GetComponent<AttackSystem>().health -= 2;
+    public void CmdPerformAttack(GameObject unit) {
+        unit.GetComponent<AttackSystem>().CmdAttackMessage();
     }
 }

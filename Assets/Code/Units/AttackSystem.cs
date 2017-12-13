@@ -15,13 +15,13 @@ public class AttackSystem : NetworkBehaviour {
 
     public UnitAlliance faction = 0;
     [SyncVar]
-    public int health = 2;
+    public int health = 100;
 
 	int attackStage = -1; //what part of chain attack attack is on
 	float windupTime = 0;
 	float backswingTime = 0;
 	[SyncVar] int bufferedAttack = -1; //Was another attack scheduled to attack during the backswing for attackStage attack
-
+    float attackRate = 1f;
 	// Use this for initialization
 	void Start () {
 		//Spawn weapon prefab in hand
