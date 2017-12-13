@@ -25,10 +25,11 @@ public class BarMerchants : DecisionOption {
         if (randVal > 98){
             GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[0];
             return 0;
-        } else if (randVal > 5){
+        } else if (randVal > 50){
             GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[1];
             return -1;
         } else {
+            GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[2];
             return 0;
         }
     }

@@ -85,15 +85,15 @@ public class Tile : NetworkBehaviour {
         if (playerUnitController.isLocalPlayer && units.Count > 0 ) {
             if ((building != null && !building.isObstruction) || building == null) {
                 buildMenu.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 2.5f);
-                spacePrompt.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 1.5f);
-                spacePrompt.GetComponent<Text>().text = "Press [Space] to recall Villager.";
+                spacePrompt.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 1.5f + new Vector3(1f,0,0));
+                spacePrompt.GetComponent<Text>().text = "Press [E] to recall Villager.";
             } else {
                 buildMenu.position = new Vector3(-100, -100, 1);
                 spacePrompt.position = new Vector3(-100, -100, 1);
             }
         } else if(playerUnitController.isLocalPlayer) {
-            spacePrompt.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 1.5f);
-            spacePrompt.GetComponent<Text>().text = "Press [SPACE] to assign a villager.";
+            spacePrompt.position = Camera.main.WorldToScreenPoint(playerUnitController.transform.position + Vector3.up * 1.5f + new Vector3(1f, 0, 0));
+            spacePrompt.GetComponent<Text>().text = "Press [E] to assign a villager.";
             buildMenu.position = new Vector3(-100, -100, 1);
         }
         if (Input.GetButtonDown("QuickMenu1") && building == null && playerUnitController.isLocalPlayer){

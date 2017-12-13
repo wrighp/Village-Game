@@ -195,14 +195,20 @@ public class TileManager : NetworkBehaviour {
             foreach (FollowerMovement f in GameObject.FindObjectsOfType<FollowerMovement>()) {
                 f.rooted = false;
             }
+            SupplyData sD = GameObject.FindObjectOfType<SupplyData>();
+            sD.gold += sD.workers;
+            sD.food = Mathf.Clamp(sD.food, 0, sD.food - (int)Mathf.Ceil((sD.fighters + sD.workers) / 4));
+            if(sD.food < 0) {
+                sD.fighters = Mathf.Clamp(sD.fighters, 0, sD.fighters - 1);
+            }
         }
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
         }
         int roll = Random.Range(0, 99);
-        if (hasAuthority && Random.Range(0, 99) >= 90) {
+        if (hasAuthority && Random.Range(0, 99) >= 100) {
             FightManager.i.StartFight(5);
-        } if (hasAuthority && Random.Range(0,99) >= 70){
+        } else if (hasAuthority && Random.Range(0,99) >= 70){
             QuestHandler qH = GameObject.FindObjectOfType<QuestHandler>();
             qH.SelectQuest();
         }

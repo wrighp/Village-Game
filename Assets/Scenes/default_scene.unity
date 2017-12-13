@@ -3989,12 +3989,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5be651968f78f48b87e297a62322a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wood: 12
-  stone: 12
-  food: 12
-  gold: 12
+  wood: 15
+  stone: 15
+  food: 15
+  gold: 25
   workers: 3
-  fighters: 9
+  fighters: 5
 --- !u!114 &1736497891
 MonoBehaviour:
   m_ObjectHideFlags: 0
