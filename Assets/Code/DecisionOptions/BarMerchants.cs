@@ -22,15 +22,12 @@ public class BarMerchants : DecisionOption {
     ///Different results can be decided here with basic float value = Random.value and > switches
     public override int onChosen() {
         int randVal = Random.Range(0, 99);
-        if (randVal > 98){
+        if (randVal > 50){
             GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[0];
-            return 0;
-        } else if (randVal > 50){
-            GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[1];
             return -1;
         } else {
-            GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[2];
-            return 0;
+            GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[1];
+            return -1;
         }
     }
 
