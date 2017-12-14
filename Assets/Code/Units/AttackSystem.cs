@@ -49,14 +49,15 @@ public class AttackSystem : NetworkBehaviour {
 
     // Update is called once per frame
     void Update(){
-        if (health <= 0){
-            if(!isLocalPlayer)
+        if (health <= 0) {
+            if (!isLocalPlayer)
                 UnitManager.i.DestroyUnit(this.gameObject);
             else {
                 transform.position = Vector3.zero;
                 FightManager.i.inCombatPlayers--;
                 CmdSetHeatlth(1000, GetComponent<NetworkIdentity>().netId);
             }
+        }
         //Doing a windup
         if (IsInWindup()){
             windupTime -= Time.deltaTime * atkRate;
