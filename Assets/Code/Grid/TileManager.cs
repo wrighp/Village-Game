@@ -181,7 +181,7 @@ public class TileManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnEnd(){
-        if (QuestHandler.i.busy != 0) return;
+        if (QuestHandler.i.busy != 0 || FightManager.i.inCombat) return;
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnEnd();
         }
@@ -206,9 +206,9 @@ public class TileManager : NetworkBehaviour {
             b.OnTurnStart();
         }
         int roll = Random.Range(0, 99);
-        if (hasAuthority && Random.Range(0, 99) >= 100) {
+        if (hasAuthority && Random.Range(0, 99) >= 0) {
             FightManager.i.StartFight(5);
-        } else if (hasAuthority && Random.Range(0,99) >= 70){
+        } else if (hasAuthority && Random.Range(0,99) >= 1000){
             QuestHandler qH = GameObject.FindObjectOfType<QuestHandler>();
             qH.SelectQuest();
         }

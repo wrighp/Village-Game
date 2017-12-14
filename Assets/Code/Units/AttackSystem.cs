@@ -50,8 +50,13 @@ public class AttackSystem : NetworkBehaviour {
     // Update is called once per frame
     void Update(){
         if (health <= 0){
-            UnitManager.i.DestroyUnit(this.gameObject);
-        }
+            if(!isLocalPlayer)
+                UnitManager.i.DestroyUnit(this.gameObject);
+            else {
+                transform.position = Vector3.zero;
+                FightManager.i.inCombatPlayers--;
+                CmdSetHeatlth(1000, GetComponent<NetworkIdentity>().netId);
+            }
         //Doing a windup
         if (IsInWindup()){
             windupTime -= Time.deltaTime * atkRate;
@@ -81,6 +86,7 @@ public class AttackSystem : NetworkBehaviour {
                             //Play random hit sound
 
                             //Apply base damage
+                            if (obj == null) break;
                             AttackSystem at = obj.GetComponent<AttackSystem>();
                             if (at != null && at.faction != faction) {
                                 at.CmdInflictDamage((int)(20 * atkMult / at.defMult), at.GetComponent<NetworkIdentity>().netId);
@@ -164,6 +170,12 @@ public class AttackSystem : NetworkBehaviour {
     [Command]
     public void CmdInflictDamage(int dmg, NetworkInstanceId netId) {
         GameObject target = ClientScene.FindLocalObject(netId);
-        health -= dmg;
+        target.GetComponent<AttackSystem>().health -= dmg;
+    }
+
+    [Command]
+    public void CmdSetHeatlth(int hp, NetworkInstanceId netId) {
+        GameObject target = ClientScene.FindLocalObject(netId);
+        target.GetComponent<AttackSystem>().health = hp;
     }
 }

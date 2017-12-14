@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c20f976787f9b014c81f17afdc173e63, type: 3}
-  m_Name: Person
+  m_Name: Hero
   m_EditorClassIdentifier: 
   unitAnimator: {fileID: 9100000, guid: 9097e1116206e48488916ccb3d3acbeb, type: 2}
   unitSpriteSet: {fileID: 11400000, guid: d31761afb4ebf3c48b65252c3258ee1e, type: 2}
@@ -20,9 +20,9 @@ MonoBehaviour:
   - {fileID: 1100143934528068, guid: d6ae1a1db4afeb640918dd182cf27276, type: 2}
   - {fileID: 1506460596458670, guid: 16b613313842b9c408d5e9cb9bd81ac6, type: 2}
   - {fileID: 1995762539188190, guid: 61f87236941ae014b99c11d5a11ff351, type: 2}
-  health: 160
+  health: 500
   scale: 1
-  dmgMult: 1
+  dmgMult: 1.25
   defMult: 1
   attackRateMult: 1
   movementSpeedMult: 1
