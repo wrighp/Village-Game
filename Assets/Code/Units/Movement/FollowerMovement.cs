@@ -14,8 +14,17 @@ public class FollowerMovement : NetworkBehaviour{
 	public Transform target;
     [SyncVar]
     public bool rooted = false;
+    public bool built = false;
+    public UnitData unitData;
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (!built)
+            GetComponent<AddBody>().BuildBody(unitData);
+        built = true;
+    }
 
-	void Awake(){
+    void Awake(){
 		movement = GetComponent<CharacterMovement>();
 	}
 

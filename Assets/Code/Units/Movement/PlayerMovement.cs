@@ -23,9 +23,6 @@ public class PlayerMovement : NetworkBehaviour {
 		if(!isLocalPlayer /*|| !hasAuthority*/){
 			return;
 		}
-        if (Input.GetKeyDown(KeyCode.P)) {
-            GetComponent<AttackSystem>().CmdAttackMessage();
-        }
 
 		//Make sure to use Raw Axis or movement becomes very lethargics
 		movement.direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

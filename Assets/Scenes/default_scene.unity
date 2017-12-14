@@ -4024,6 +4024,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitPrefab: {fileID: 1049338483488876, guid: 472fb933401612947bee5cb8d0065ac4, type: 2}
+  unitData:
+  - {fileID: 11400000, guid: c9968a01ce0a1b1458f1113f8c22ea3c, type: 2}
+  - {fileID: 11400000, guid: e6efa435cabeef34eb0b4b0b4deddf38, type: 2}
 --- !u!114 &1736497893
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,11 +29,14 @@ public static class BuildUnit {
             weapon.transform.localScale = Vector3.one;
         }
 
-        /*Modify combat script stats from here
-        *
-        *
-        *
-        */
+        //Modify combat script stats from here
+        AttackSystem atkSys = unit.transform.parent.GetComponent<AttackSystem>();
+        if (atkSys != null) {
+            atkSys.health = unitData.health;
+            atkSys.atkRate = unitData.attackRateMult;
+            atkSys.atkMult = unitData.dmgMult;
+            atkSys.defMult = unitData.defMult;
+        }
     }
 
 }

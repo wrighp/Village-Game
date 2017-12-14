@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TestUnit: {fileID: 1056363059309706, guid: 532376bfb9295bb4bb277cae09aecb05, type: 2}
   minFollowerDistance: 4
+  unitData: {fileID: 11400000, guid: c9968a01ce0a1b1458f1113f8c22ea3c, type: 2}
 --- !u!250 &250267763525891718
 PointEffector2D:
   m_ObjectHideFlags: 1

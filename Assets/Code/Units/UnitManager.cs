@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 public enum UnitAlliance{ FriendlyVillager, FriendlyFighter, EnemyFighter };
 public class UnitManager : NetworkBehaviour {
 	public GameObject unitPrefab;
+    public UnitData[] unitData;
 
 	public SyncListGameObject friendlyFighters = new SyncListGameObject();
 	public SyncListGameObject friendlyVillagers = new SyncListGameObject();
@@ -26,15 +27,15 @@ public class UnitManager : NetworkBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.EnemyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
-        //}
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.FriendlyFighter, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
-        //}
-	}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.EnemyFighter, 1, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SpawnUnit(new Vector3(5, 5, 0), UnitAlliance.FriendlyFighter, 0, Resources.Load<GameObject>("NetworkPrefabs/Attacker"));
+        }
+    }
 
 	public override void OnStartServer ()
 	{
@@ -48,8 +49,8 @@ public class UnitManager : NetworkBehaviour {
 
 	}
 
-	public void SpawnUnit(Vector3 position, UnitAlliance alliance, GameObject prefab = null){
-		Cmds.i.CmdSpawnUnit(position, prefab ?? unitPrefab, alliance);
+	public void SpawnUnit(Vector3 position, UnitAlliance alliance, int unitDataType, GameObject prefab = null){
+		Cmds.i.CmdSpawnUnit(position, prefab ?? unitPrefab, alliance, unitDataType);
 	}
 
 	public void returnSpawnUnit(GameObject go, UnitAlliance alliance){
@@ -90,9 +91,10 @@ public class UnitManager : NetworkBehaviour {
 
 public partial class Cmds : NetworkBehaviour {
 	[Command]
-	public void CmdSpawnUnit(Vector3 position, GameObject netPrefab, UnitAlliance alliance) {
+	public void CmdSpawnUnit(Vector3 position, GameObject netPrefab, UnitAlliance alliance, int unitData) {
 		GameObject go = GameObject.Instantiate (netPrefab, position, Quaternion.identity);
-		NetworkServer.Spawn(go);
+        go.GetComponent<AddBody>().BuildBody(UnitManager.i.unitData[unitData]);
+        NetworkServer.Spawn(go);
         UnitManager.i.returnSpawnUnit(go,alliance);
     }
 }

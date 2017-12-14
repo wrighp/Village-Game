@@ -28,7 +28,8 @@ public class PlayerUnitControl : NetworkBehaviour {
 	public GameObject TestUnit;
 	public float minFollowerDistance = 4f;
 	public SyncListSquadUnit squad = new SyncListSquadUnit();
-
+    public UnitData unitData;
+    bool built = false;
 	void Awake(){
 		squad.Callback = OnSquadChanged;
 	}
@@ -36,8 +37,10 @@ public class PlayerUnitControl : NetworkBehaviour {
 	public override void OnStartClient ()
 	{
 		base.OnStartClient ();
-
-	}
+        if (!built)
+            GetComponent<AddBody>().BuildBody(unitData);
+        built = true;
+    }
 
 	public override void OnStartServer ()
 	{
@@ -51,17 +54,18 @@ public class PlayerUnitControl : NetworkBehaviour {
 	{
 		base.OnStartLocalPlayer ();
         CmdTestSpawnSquad();
-	}
+    }
 
-	/// <summary>
-	/// Tests a squad by spawning it in
-	/// </summary>
-	[Command]
+    /// <summary>
+    /// Tests a squad by spawning it in
+    /// </summary>
+    [Command]
 	void CmdTestSpawnSquad(){
 		int count = 3;
 		for(int i = 0; i < count; i++){
 			GameObject go = GameObject.Instantiate (TestUnit, transform.position + (Vector3)(Random.insideUnitCircle * .1f), Quaternion.identity);
-			NetworkServer.Spawn(go);
+            //go.GetComponent<AddBody>().BuildBody(unitData);
+            NetworkServer.Spawn(go);
 			SquadUnit su = SquadUnit.GameObjectToSquadUnit(go);
 			//Should be assigned at authority, in this case the server
 			CmdAddUnitToSquad(su);

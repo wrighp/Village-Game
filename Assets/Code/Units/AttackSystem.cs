@@ -14,14 +14,16 @@ public class AttackSystem : NetworkBehaviour {
 	GameObject weaponItem;
 
     public UnitAlliance faction = 0;
-    [SyncVar]
-    public int health = 100;
-
-	int attackStage = -1; //what part of chain attack attack is on
-	float windupTime = 0;
-	float backswingTime = 0;
-	[SyncVar] int bufferedAttack = -1; //Was another attack scheduled to attack during the backswing for attackStage attack
-    float attackRate = 1f;
+    [SyncVar] public int health = 100;
+    public float atkRate = 1f;
+    public float defMult = 1f; 
+    public float atkMult = 1f;
+    
+    int attackStage = -1; //what part of chain attack attack is on
+	public float windupTime = 0;
+	public float backswingTime = 0;
+	[SyncVar]public int bufferedAttack = -1; //Was another attack scheduled to attack during the backswing for attackStage attack
+    
 	// Use this for initialization
 	void Start () {
 		//Spawn weapon prefab in hand
@@ -51,11 +53,9 @@ public class AttackSystem : NetworkBehaviour {
         }
 		//Doing a windup
 		if(IsInWindup()){
-            print("Windup");
-			windupTime -= Time.deltaTime;
+			windupTime -= Time.deltaTime * atkRate;
 			//Is windup finished (attack being done now)
 			if(windupTime <= 0){
-                print("Performing attack");
                 WeaponCollision wc = GetComponentInChildren<WeaponCollision>();
                 List<GameObject> objectsHit = new List<GameObject>();
                 foreach(GameObject go in wc.currentCollisions){
@@ -63,7 +63,7 @@ public class AttackSystem : NetworkBehaviour {
                 }
                 
 				int objectsHitCount = objectsHit.Count;
-                print(objectsHitCount);
+
 				WeaponAttack chainAttack = weaponObject.chainAttack[attackStage];
 				foreach(SwingEffect swing in chainAttack.swingEffects){
 					swing.OnBeforeHit(this, objectsHitCount);
@@ -78,16 +78,12 @@ public class AttackSystem : NetworkBehaviour {
 							GameObject obj = objectsHit [i];
 							swing.OnHit(this, obj, i, objectsHitCount);
                             //Play random hit sound
-                            //
-                            //
-                            //
-                            //
 
                             //Apply base damage
                             AttackSystem at = obj.GetComponent<AttackSystem>();
                             if(at != null && at.faction != faction){
                                 print(at.gameObject.name);
-                                at.CmdInflictDamage(2, at.GetComponent<NetworkIdentity>().netId);
+                                at.CmdInflictDamage((int)(20 * atkMult / at.defMult), at.GetComponent<NetworkIdentity>().netId);
                             }
 						}
 					}
@@ -98,8 +94,7 @@ public class AttackSystem : NetworkBehaviour {
 		else{
             //Doing backswing
             if (IsInBackswing()){
-                print("Backswing");
-                backswingTime -= Time.deltaTime;
+                backswingTime -= Time.deltaTime* atkRate;
 				//backswing just finished
 				if(backswingTime <= 0){
 					WeaponAttack chainAttack = weaponObject.chainAttack[attackStage];
@@ -122,9 +117,15 @@ public class AttackSystem : NetworkBehaviour {
 			}
 		}
 
-	}
+        if (Input.GetKeyDown(KeyCode.P) && isLocalPlayer){
+            print("isLocalplayer");
+            CmdAttackMessage(IsInWindup());
+        }
+
+    }
 
 	void BeginAttack(){
+        print("Begin attack");
         WeaponCollision wc = GetComponentInChildren<WeaponCollision>();
         wc.currentCollisions.Clear();
         
@@ -137,6 +138,7 @@ public class AttackSystem : NetworkBehaviour {
 			swing.OnSwing(this);
 		}
 
+        print("here");
         Animator anim = GetComponentInChildren<Animator>();
         if(wc == null || wc.type.Equals("sword")) {
             anim.Play("SwordSwing_Right");
@@ -158,10 +160,10 @@ public class AttackSystem : NetworkBehaviour {
 
 	//Send attack message (like after button press to attack)
 	[Command]
-	public void CmdAttackMessage(){
-		if(!IsInWindup()){
+	public void CmdAttackMessage(bool isInWindup){
+        print("Action confirmed");
+        if (!isInWindup){
             bufferedAttack = attackStage + 1;
-            print("Buffered stage: " + bufferedAttack);
 		}
 	}
 

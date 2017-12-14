@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c20f976787f9b014c81f17afdc173e63, type: 3}
-  m_Name: TestPerson
+  m_Name: Person
   m_EditorClassIdentifier: 
   unitAnimator: {fileID: 9100000, guid: 9097e1116206e48488916ccb3d3acbeb, type: 2}
   unitSpriteSet: {fileID: 11400000, guid: d31761afb4ebf3c48b65252c3258ee1e, type: 2}

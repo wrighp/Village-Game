@@ -119,6 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 4
   target: {fileID: 0}
+  rooted: 0
+  built: 0
+  unitData: {fileID: 11400000, guid: c9968a01ce0a1b1458f1113f8c22ea3c, type: 2}
 --- !u!114 &114479280688678704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,6 +166,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
+  faction: 0
+  health: 100
+  atkRate: 1
+  defMult: 1
+  atkMult: 1
 --- !u!114 &114777915393743352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,6 +220,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   speedMultiplier: 1
   directionFacesRight: 1
+  bodyTransform: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!250 &250432545083461210
 PointEffector2D:
   m_ObjectHideFlags: 1

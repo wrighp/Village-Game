@@ -15,10 +15,10 @@ MonoBehaviour:
   unitSpriteSet: {fileID: 11400000, guid: c164cc14b9afe9e4f8497db75205ff8e, type: 2}
   weapon:
   - {fileID: 1578095892866718, guid: 574c6623071d44841b944814ecf049a0, type: 2}
-  health: 100
+  health: 10
   scale: 1
-  dmgMult: 1
-  defMult: 1
-  attackRateMult: 1
+  dmgMult: 0.5
+  defMult: 0.5
+  attackRateMult: 0.2
   movementSpeedMult: 1
   itemRate: 1
