@@ -20,6 +20,9 @@ public class SurrenderMerchants : DecisionOption {
     ///Different results can be decided here with basic float value = Random.value and > switches
     public override int onChosen() {
         GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[0];
+        SupplyData sD = GameObject.FindObjectOfType<SupplyData>();
+        sD.gold = Mathf.Clamp(sD.gold, 0, sD.gold - 5);
+        sD.food = Mathf.Clamp(sD.food, 0, sD.food - 5);
         return -1;
     }
 

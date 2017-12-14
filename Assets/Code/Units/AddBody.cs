@@ -1,20 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class AddBody : MonoBehaviour {
+public class AddBody : NetworkBehaviour {
 	public GameObject bodyPrefab;
 	// Use this for initialization
-	void Start () {
-		GameObject go = (GameObject)Instantiate(bodyPrefab,transform);
+	public void BuildBody (UnitData unitData) {
+        GameObject go = (GameObject)Instantiate(bodyPrefab,transform);
 		GetComponent<CharacterMovement>().SetBody(go);
-		Destroy(this);
+        BuildUnit.Build(go, unitData);
+        Destroy(this);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
 }

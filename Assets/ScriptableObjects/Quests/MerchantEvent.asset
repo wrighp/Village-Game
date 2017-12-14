@@ -13,14 +13,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuestName: Merchant Caravan
   Decision:
-    decisionDescription: Merchant caravan approached
+    decisionDescription: A Merchant Caravan approaches...
     options:
     - choiceDescription: Let enter
       option: {fileID: 11400000, guid: eacf0b15946bf8d40b81b836d96f36bc, type: 2}
     - choiceDescription: Bar
       option: {fileID: 11400000, guid: 7fe0ccc5ffd4f0540b84dbd0585b519c, type: 2}
     branches:
-    - decisionDescription: The merchants were bandits
+    - decisionDescription: As the merchants pass through the gates, they reveal weapons
+        and demand your money or your life.
       options:
       - choiceDescription: Fight
         option: {fileID: 11400000, guid: 2b0cc72d8f462034ea1a0d584f750e71, type: 2}

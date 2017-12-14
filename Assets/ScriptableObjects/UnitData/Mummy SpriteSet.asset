@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5187eccdbdfa442913238f59b67423, type: 3}
+  m_Name: Mummy SpriteSet
+  m_EditorClassIdentifier: 
+  head:
+  - {fileID: 21300000, guid: 1fd89474897bc544bac9bd480bc62714, type: 3}
+  body:
+  - {fileID: 21300000, guid: 240578d606006b8488b000102eec83d3, type: 3}
+  leftArm:
+  - {fileID: 21300000, guid: d17dc5ec71b2d86479e91e2876428053, type: 3}
+  rightArm:
+  - {fileID: 21300000, guid: 46ad234ed4c64f9439e6ba34ae57740c, type: 3}
+  leftLeg:
+  - {fileID: 21300000, guid: e30c4fa0e466958408176d85cd1f8f2f, type: 3}
+  rightLeg:
+  - {fileID: 21300000, guid: e6b81818602f3814eb38f3bf8693c793, type: 3}

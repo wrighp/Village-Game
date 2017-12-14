@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: FightMerchant
   m_EditorClassIdentifier: 
   EndingDescriptions:
-  - Dummy data to test system
+  - The Bandits have been repelled. You scavenge resources from the encounter.
+  - The Village is overpowered by the Bandits and suffers heavy casualties

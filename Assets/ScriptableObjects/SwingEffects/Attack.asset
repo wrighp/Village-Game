@@ -8,8 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6338372603f2ccd41bebec9e7888a521, type: 3}
-  m_Name: SurrenderMerchant
+  m_Script: {fileID: 11500000, guid: be7684f66a524c54e85a7d0c77eaaf51, type: 3}
+  m_Name: Attack
   m_EditorClassIdentifier: 
-  EndingDescriptions:
-  - You surrender to the Bandits, they pillage resources from the Village.

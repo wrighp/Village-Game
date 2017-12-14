@@ -23,6 +23,7 @@ public class PlayerMovement : NetworkBehaviour {
 		if(!isLocalPlayer /*|| !hasAuthority*/){
 			return;
 		}
+
 		//Make sure to use Raw Axis or movement becomes very lethargics
 		movement.direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 		//Non-normalized directions act as acceleration multiplier

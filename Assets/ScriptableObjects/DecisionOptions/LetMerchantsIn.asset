@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Name: LetMerchantsIn
   m_EditorClassIdentifier: 
   EndingDescriptions:
-  - You trade with the merchants making a good deal
-  - You trade with the merchants
-  - The merchants trade you faulty goods, by the time you realize it. They are long
-    gone
+  - You strike a bargain with the Merchant Caravan! Costs reduced by 40%!
+  - You successfully trade with the Merchant Caravan.
+  - The Merchant Caravan trades your Village faulty goods, but by the time you realize
+    it, they are long gone.
+  - You are unable to strike a deal with the merchants.

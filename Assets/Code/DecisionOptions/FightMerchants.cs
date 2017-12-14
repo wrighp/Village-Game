@@ -19,7 +19,18 @@ public class FightMerchants : DecisionOption {
     ///Returns next decision branch to take (from branches array), -1 if this ends the chain
     ///Different results can be decided here with basic float value = Random.value and > switches
     public override int onChosen() {
-        GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[0];
+        SupplyData sD = GameObject.FindObjectOfType<SupplyData>();
+        if (sD.fighters > 5) {
+            GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[0];
+            sD.fighters = Mathf.Clamp(sD.fighters, 0,  sD.fighters - Random.Range(0,1));
+            sD.gold = Mathf.Clamp(sD.gold, 0, sD.gold + 5);
+            sD.food = Mathf.Clamp(sD.food, 0, sD.food + 5);
+        } else {
+            GameObject.FindObjectOfType<QuestHandler>().eventDescription.text = EndingDescriptions[1];
+            sD.fighters = Mathf.Clamp(sD.fighters, 0, sD.fighters - 5);
+            sD.gold = Mathf.Clamp(sD.gold, 0, sD.gold - 5);
+            sD.food = Mathf.Clamp(sD.food, 0, sD.food - 5);
+        }
         return -1;
     }
 

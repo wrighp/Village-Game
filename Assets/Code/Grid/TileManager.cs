@@ -55,7 +55,7 @@ public class TileManager : NetworkBehaviour {
 			spacing.y = grid.height / (float)height;
 		}
 
-		for(int i = -5; i < width+5; i++){
+		for(int i = -5; i < width+20; i++){
 			for(int j = -2; j < height+2; j++){
 				GameObject go = (GameObject)GameObject.Instantiate(tilePrefab, new Vector2(i * spacing.x + offset * j,j * spacing.y),Quaternion.identity,transform);
 				NetworkServer.Spawn(go);
@@ -181,7 +181,7 @@ public class TileManager : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcTurnEnd(){
-        if (QuestHandler.i.busy != 0) return;
+        if (QuestHandler.i.busy != 0 || FightManager.i.inCombat) return;
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnEnd();
         }
@@ -195,11 +195,20 @@ public class TileManager : NetworkBehaviour {
             foreach (FollowerMovement f in GameObject.FindObjectsOfType<FollowerMovement>()) {
                 f.rooted = false;
             }
+            SupplyData sD = GameObject.FindObjectOfType<SupplyData>();
+            sD.gold += sD.workers;
+            sD.food = Mathf.Clamp(sD.food, 0, sD.food - (int)Mathf.Ceil((sD.fighters + sD.workers) / 4));
+            if(sD.food < 0) {
+                sD.fighters = Mathf.Clamp(sD.fighters, 0, sD.fighters - 1);
+            }
         }
         foreach (Building b in GameObject.FindObjectsOfType<Building>()) {
             b.OnTurnStart();
         }
-        if (hasAuthority && Random.Range(0,99) >= 80){
+        int roll = Random.Range(0, 99);
+        if (hasAuthority && Random.Range(0, 99) >= 0) {
+            FightManager.i.StartFight(5);
+        } else if (hasAuthority && Random.Range(0,99) >= 1000){
             QuestHandler qH = GameObject.FindObjectOfType<QuestHandler>();
             qH.SelectQuest();
         }
