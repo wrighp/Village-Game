@@ -528,6 +528,12 @@ MonoBehaviour:
   weaponObject: {fileID: 11400000, guid: 754c3ffbb74688d45bb921a3b6d2c49f, type: 2}
   faction: 0
   health: 2
+  atkRate: 1
+  defMult: 1
+  atkMult: 1
+  windupTime: 0
+  backswingTime: 0
+  bufferedAttack: -1
 --- !u!114 &236802116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,11 +898,20 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1966220923601080, guid: ff1332ea4ac8b2f40a06700995662238, type: 2}
+  - {fileID: 1405444803438846, guid: c019aee3002e45f48bb5ffef36d7a934, type: 2}
+  - {fileID: 1485305946029480, guid: 5c6869072629a7b47926caa8ad3d9af4, type: 2}
   - {fileID: 1056363059309706, guid: 532376bfb9295bb4bb277cae09aecb05, type: 2}
+  - {fileID: 1950904420915370, guid: 0790a5cb82cf9a7498cac7a7f22d913b, type: 2}
+  - {fileID: 1480839445318562, guid: 20fd8fea5c6f65b4cabcb3717035c6db, type: 2}
   - {fileID: 1767435233610156, guid: 601b9c46b6c0b5a4b8b105098bec6d75, type: 2}
   - {fileID: 1779589384174938, guid: bce351be3e367a84f83be1b21369ac5f, type: 2}
+  - {fileID: 1329411985929488, guid: be1760468c9aba24bae3a178da73660d, type: 2}
+  - {fileID: 1421142562859234, guid: 2813d7c70abf4244b9e3bf4400931351, type: 2}
   - {fileID: 1193455388726470, guid: f448159bf93e4ca4e8bdd1f81ede38d7, type: 2}
   - {fileID: 1033772041132198, guid: e512d80f0d3484c4094fa5114ddd289a, type: 2}
+  - {fileID: 1822100646816870, guid: 56eb790dbac1dd340b28531cbcd60369, type: 2}
+  - {fileID: 1050169941967658, guid: bed5eff87f47b3c4f915c43892f6e4fa, type: 2}
+  - {fileID: 1966220923601080, guid: d52aecc7726b8264bbdc2ce921437e5e, type: 2}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:

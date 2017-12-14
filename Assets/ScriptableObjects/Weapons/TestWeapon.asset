@@ -18,18 +18,18 @@ MonoBehaviour:
     backswingTime: 0.25
     baseDamage: 1
     swingEffects:
-    - {fileID: 11400000, guid: b8087fbf00931f24e8587cc5ccf7158d, type: 2}
+    - {fileID: 11400000, guid: c368140710d4f114a8c42e7e2f4b969a, type: 2}
   - windupTime: 0.25
     cleave: 10
     backswingTime: 0.25
     baseDamage: 2
     swingEffects:
-    - {fileID: 11400000, guid: b8087fbf00931f24e8587cc5ccf7158d, type: 2}
+    - {fileID: 11400000, guid: c368140710d4f114a8c42e7e2f4b969a, type: 2}
   - windupTime: 0.4
     cleave: 10
     backswingTime: 0.6
     baseDamage: 3
     swingEffects:
-    - {fileID: 11400000, guid: b8087fbf00931f24e8587cc5ccf7158d, type: 2}
+    - {fileID: 11400000, guid: c368140710d4f114a8c42e7e2f4b969a, type: 2}
   swingSounds: []
   hitSounds: []
